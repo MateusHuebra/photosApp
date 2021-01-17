@@ -1,0 +1,23 @@
+{
+  "name": "photosapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MateusHuebra/photosApp.git"
+  },
+  "author": "Mateus Huebra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MateusHuebra/photosApp/issues"
+  },
+  "homepage": "https://github.com/MateusHuebra/photosApp#readme",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "materialize-css": "^1.0.0-rc.2"
+  }
+}
