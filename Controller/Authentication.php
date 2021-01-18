@@ -22,7 +22,7 @@ class Authentication extends Controller {
 		} catch(\Exception\InvalidCredentials $exception) {
 			$this->redirect('authentication/login', $exception->getMessage());
 		} catch(\Exception $exception) {
-
+			$this->redirect('authentication/login');
 		}
 
 		(new \Service\Authentication())->login($user);
@@ -30,26 +30,15 @@ class Authentication extends Controller {
 	}
 
 	function signUpNewAccount() {
-		$daoUser = new \Dao\User();
-
-		if(empty($_POST['email'])) {
-			echo "email is empty";
-			die();
-		} else if (strlen($_POST['email']) > 128) {
-			echo "email is too long</br> max: 128 characters";
-			die();
-		//} else if (!preg_match("/^[A-Za-z0-9_@.]{1,128}$/", $_POST['email'])) {
-		//	echo "email cannot have special characters</br> just letters, numbers";
-		//	die();
-		} else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			echo "it must be an email";
-			die();
-		} else if ($daoUser->checkEmailExists($_POST['email'])) {
-			echo "email already being used";
-			die();
+		try {
+			(new \Service\Authentication())->authenticateEmail($_POST['email']);
+		} catch(\Exception\InvalidCredentials $exception) {
+			$this->redirect('authentication/signUp', $exception->getMessage());
+		} catch(\Exception $exception) {
+			$this->redirect('authentication/signUp');
 		}
 
-		
+		$daoUser = new \Dao\User();
 		$daoUser->save($_POST['email'], $_POST['password']);
 		$this->redirect('authentication/login');
 	}
