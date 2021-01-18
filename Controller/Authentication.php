@@ -20,7 +20,7 @@ class Authentication extends Controller {
 		try {
 			$user = $daoUser->getByUsernameOrEmailAndPassword($_POST['usernameOrEmail'], $_POST['password']);
 		} catch(\Exception\InvalidCredentials $exception) {
-			$this->redirect('authentication/login', $exception->getMessage());
+			$this->redirect('authentication/login', $exception->getMessage(), $_POST['usernameOrEmail']);
 		} catch(\Exception $exception) {
 			$this->redirect('authentication/login');
 		}
@@ -33,7 +33,7 @@ class Authentication extends Controller {
 		try {
 			(new \Service\Authentication())->authenticateEmail($_POST['email']);
 		} catch(\Exception\InvalidCredentials $exception) {
-			$this->redirect('authentication/signUp', $exception->getMessage());
+			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
 		} catch(\Exception $exception) {
 			$this->redirect('authentication/signUp');
 		}

@@ -1,3 +1,6 @@
+<?php
+$LoginAndSignup = new \Service\LoginAndSignup();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,16 +26,20 @@
     <form class="col s12 l4 offset-l4" method="post" action="/photosApp/authentication/signUpNewAccount">
       <div class="row">
         <div class="input-field col s10 offset-s1">
-          <input name="email" id="email" type="text" class="validate">
+          <input name="email" id="email" type="text" class="validate" required="true" value=<?php $LoginAndSignup->showInfo(true);  ?> >
           <label for="email">Email</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s10 offset-s1">
-          <input name="password" id="password" type="password" class="validate">
+          <input name="password" id="password" type="password" class="validate" required="true">
           <label for="password">Password</label>
-          <span class="helper-text" data-error="wrong" data-success="right"></span>
+          <span class="helper-text">
+            <?php
+              $LoginAndSignup->showErrorMessage();
+            ?>
+          </span>
         </div>
       </div>
       
