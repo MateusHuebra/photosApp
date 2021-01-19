@@ -11,14 +11,14 @@ class User extends Dao {
 		if($result==false) {
 			throw new \Exception\InvalidCredentials("Invalid credentials");
 		}
-		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email']);
+		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo']);
 	}
 
 	function getByEmail(string $email) {
 		$query = 'select * from user where email = "'.$usernameOrEmail.'"';
 		$connection = $this->getConnection();
 		$result = $connection->selectOne($query);
-		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email']);
+		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo']);
 	}
 
 	function checkEmailExists(string $email) : bool {

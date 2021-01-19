@@ -8,13 +8,15 @@ class User {
 	private $name;
 	private $email;
 	private $pass;
+	private $photo;
 
-	function __construct(int $id, string $username, string $name, string $email, string $pass = null) {
+	function __construct(int $id, string $username, string $name, string $email, string $pass = null, string $photo) {
 		$this->id = $id;
 		$this->username = $username;
 		$this->name = $name;
 		$this->email = $email;
 		$this->pass = $pass;
+		$this->photo = $photo;
 	}
 
 	function getId() : int {
@@ -37,4 +39,7 @@ class User {
 		return $this->pass;
 	}
 	
+	function getPhoto() : string {
+		return $this->photo;
+	}
 }

@@ -1,3 +1,6 @@
+<?php
+$general = new \Service\General();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +15,27 @@
 </head>
 
 <body>
+
 	<nav>
 		<div class="nav-wrapper indigo darken-4">
 			<a href="#!" class="brand-logo center">photosApp</a>
 			<!--
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->
-			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="/photosApp/images/default.png" alt="" class="circle-mobile"></a>
-			<ul class="left hide-on-med-and-down">
-				<li><img src="/photosApp/images/default.png" alt="" class="circle"></li>
-				<li><a href="sass.html">Sass</a></li>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src=<?php echo '"'.$general->getProfilePicture($_SESSION['user']->getPhoto()).'"'; ?> alt="" class="circle-mobile"></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="#">Profile</a></li>
+				<li><img src=<?php echo '"'.$general->getProfilePicture($_SESSION['user']->getPhoto()).'"'; ?> alt="" class="circle"></li>
+	   		 	<li><a href="/photosApp/authentication/login">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<ul class="sidenav" id="mobile-demo">
-	    <li><a href="sass.html">Sass</a></li>
+		<div>
+			<img src="/photosApp/images/cover.png" alt="" class="sidenav-photo">
+			<img src=<?php echo '"'.$general->getProfilePicture($_SESSION['user']->getPhoto()).'"'; ?> alt="" class="sidenav-circle">
+		</div>
+	    <li><a href="#">Profile</a></li>
+	    <li><a href="/photosApp/authentication/login">Logout</a></li>
  	</ul>
