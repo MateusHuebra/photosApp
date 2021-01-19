@@ -1,32 +1,9 @@
-<?php
-$LoginAndSignup = new \Service\LoginAndSignup();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>photosApp - sign up</title>
-	<!--Import Google Icon Font-->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="/photosApp/node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-	<link rel="stylesheet" type="text/css" href="/photosApp/css/login.css">
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-
-<body>
-	<nav>
-		<div class="nav-wrapper indigo darken-4">
-			<a href="#!" class="brand-logo center">photosApp</a>
-
-		</div>
-	</nav>
 
 	<div class="row content">
     <form class="col s12 l4 offset-l4" method="post" action="/photosApp/authentication/signUpNewAccount">
       <div class="row">
         <div class="input-field col s10 offset-s1">
-          <input name="email" id="email" type="text" class="validate" required="true" value=<?php echo $LoginAndSignup->showInfo(true);  ?> >
+          <input name="email" id="email" type="text" class="validate" required="true" value=<?php echo (new \Service\LoginAndSignup())->showInfo(true);  ?> >
           <label for="email">Email</label>
         </div>
       </div>
@@ -37,7 +14,7 @@ $LoginAndSignup = new \Service\LoginAndSignup();
           <label for="password">Password</label>
           <span class="helper-text">
             <?php
-              echo $LoginAndSignup->showErrorMessage();
+              echo (new \Service\LoginAndSignup())->showErrorMessage();
             ?>
           </span>
         </div>
@@ -49,10 +26,3 @@ $LoginAndSignup = new \Service\LoginAndSignup();
   	  </div>
     </form>
   </div>
-
-	<script type="text/javascript" src="/photosApp/node_modules/jquery/dist/jquery.min.js"></script>
-	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="/photosApp/node_modules/materialize-css/dist/js/materialize.min.js"></script>
-	<script type="text/javascript" src="/photosApp/js/Authentication/login.js"></script>
-</body>
-</html>

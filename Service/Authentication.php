@@ -22,28 +22,28 @@ class Authentication {
 		session_destroy();
 	}
 
-	function authenticateEmail(string $email) {
+	function validateEmail(string $email) {
 		if(empty($email)) {
-			throw new \Exception\InvalidSignUp("Email is empty");
+			throw new \Exception\InvalidEmail("Email is empty");
 		} else if (strlen($email) > 128) {
-			throw new \Exception\InvalidSignUp("Email is too long / max: 128 characters");
+			throw new \Exception\InvalidEmail("Email is too long / max: 128 characters");
 		//} else if (!preg_match("/^[A-Za-z0-9_@.]{1,128}$/", $email)) {
 		//	return "email cannot have special characters</br> just letters, numbers";
 	
 		} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			throw new \Exception\InvalidSignUp("It must be an email");
+			throw new \Exception\InvalidEmail("It must be an email");
 		} else if ((new \Dao\User())->checkEmailExists($email)) {
-			throw new \Exception\InvalidSignUp("Email already being used");
+			throw new \Exception\InvalidEmail("Email already being used");
 		}
 	}
 
-	function authenticatePassword(string $password) {
+	function validatePassword(string $password) {
 		if(empty($password)) {
-			throw new \Exception\InvalidSignUp("Password is empty");
+			throw new \Exception\InvalidPassword("Password is empty");
 		} else if (strlen($password) > 16) {
-			throw new \Exception\InvalidSignUp("Password is too long / max: 16 characters");
+			throw new \Exception\InvalidPassword("Password is too long / max: 16 characters");
 		} else if (strlen($password) < 4) {
-			throw new \Exception\InvalidSignUp("Password is too short / min: 4 characters");
+			throw new \Exception\InvalidPassword("Password is too short / min: 4 characters");
 		}
 	}
 

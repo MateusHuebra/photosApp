@@ -7,12 +7,16 @@ class Authentication extends Controller {
 
 	function login() {
 		(new \Service\Authentication())->logout();
+		$this->view('Authentication/header');
 		$this->view('Authentication/login');
+		$this->view('Authentication/footer');
 	}
 
 	function signUp() {
 		(new \Service\Authentication())->logout();
+		$this->view('Authentication/header');
 		$this->view('Authentication/signUp');
+		$this->view('Authentication/footer');
 	}
 
 	function loginCheck() {
@@ -31,9 +35,11 @@ class Authentication extends Controller {
 
 	function signUpNewAccount() {
 		try {
-			(new \Service\Authentication())->authenticateEmail($_POST['email']);
-			(new \Service\Authentication())->authenticatePassword($_POST['password']);
-		} catch(\Exception\InvalidSignUp $exception) {
+			(new \Service\Authentication())->validateEmail($_POST['email']);
+			(new \Service\Authentication())->validatePassword($_POST['password']);
+		} catch(\Exception\InvalidEmail $exception) {
+			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
+		} catch(\Exception\InvalidPassword $exception) {
 			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
 		} catch(\Exception $exception) {
 			$this->redirect('authentication/signUp');
