@@ -32,14 +32,16 @@ class Authentication extends Controller {
 	function signUpNewAccount() {
 		try {
 			(new \Service\Authentication())->authenticateEmail($_POST['email']);
-		} catch(\Exception\InvalidCredentials $exception) {
+			(new \Service\Authentication())->authenticatePassword($_POST['password']);
+		} catch(\Exception\InvalidSignUp $exception) {
 			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
 		} catch(\Exception $exception) {
 			$this->redirect('authentication/signUp');
 		}
 
 		$daoUser = new \Dao\User();
-		$daoUser->save($_POST['email'], $_POST['password']);
+		$modelUser = new \Model\User(null, $_POST['email'], null, $_POST['email'], $_POST['password']);
+		$daoUser->save($modelUser);
 		$this->redirect('authentication/login');
 	}
 }
