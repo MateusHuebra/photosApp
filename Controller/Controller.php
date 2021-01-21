@@ -4,7 +4,8 @@ namespace Controller;
 
 abstract class Controller {
 
-	protected function view(string $viewName) {
+	protected function view(string $viewName, array $data = []) {
+		extract($data);
 		require('View/'.$viewName.'.php');
 	}
 

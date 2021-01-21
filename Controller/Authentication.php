@@ -8,7 +8,10 @@ class Authentication extends Controller {
 	function login() {
 		(new \Service\Authentication())->logout();
 		$this->view('Authentication/header');
-		$this->view('Authentication/login');
+		$this->view('Authentication/login', [
+			'error' => $this->showErrorMessage(),
+			'info' => $this->showInfo()
+		]);
 		$this->view('Authentication/footer');
 	}
 
@@ -49,5 +52,17 @@ class Authentication extends Controller {
 		$modelUser = new \Model\User(null, $_POST['email'], null, $_POST['email'], $_POST['password']);
 		$daoUser->save($modelUser);
 		$this->redirect('authentication/login');
+	}
+
+	private function showInfo() {
+		if(isset($_GET['info'])) {
+			return base64_decode($_GET['info']);
+		}
+	}
+
+	private function showErrorMessage() {
+		if(isset($_GET['error'])) {
+   	 		return base64_decode($_GET['error']);
+		}
 	}
 }

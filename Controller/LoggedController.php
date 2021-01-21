@@ -10,9 +10,9 @@ abstract class LoggedController extends Controller {
 		}
 	}
 	
-	protected function view(string $viewName) {
+	protected function view(string $viewName, array $data = []) {
 		parent::view('Layout/header');
-		parent::view($viewName);
+		parent::view($viewName, $data);
 		parent::view('Layout/footer');
 	}
 }
