@@ -3,7 +3,7 @@
     <form class="col s12 l4 offset-l4" method="post" action="/photosApp/authentication/signUpNewAccount">
       <div class="row">
         <div class="input-field col s10 offset-s1">
-          <input name="email" id="email" type="text" class="validate" required="true" value=<?php echo (new \Service\LoginAndSignup())->showInfo(true);  ?> >
+          <input name="email" id="email" type="text" class="validate" required="true" value="<?php echo $info;  ?>" >
           <label for="email">Email</label>
         </div>
       </div>
@@ -14,7 +14,7 @@
           <label for="password">Password</label>
           <span class="helper-text">
             <?php
-              echo (new \Service\LoginAndSignup())->showErrorMessage();
+              echo $error;
             ?>
           </span>
         </div>
