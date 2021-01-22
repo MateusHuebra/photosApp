@@ -18,7 +18,10 @@ class Authentication extends Controller {
 	function signUp() {
 		(new \Service\Authentication())->logout();
 		$this->view('Authentication/header');
-		$this->view('Authentication/signUp');
+		$this->view('Authentication/signUp', [
+			'error' => $this->showErrorMessage(),
+			'info' => $this->showInfo()
+		]);
 		$this->view('Authentication/footer');
 	}
 
