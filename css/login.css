@@ -1,7 +1,28 @@
-.content {
+.content-login {
 	margin-top: 15vh;
+}
+.content-signup {
+	margin-top: 10vh;
 }
 
 .helper-text {
 	color: red !important;
+	position: relative;
+    min-height: 18px;
+    display: block;
+	font-size: 12px;
+	align-self: center;
+}
+
+.errorMessage {
+	text-align: center;
+	margin-bottom: 3px;
+}
+
+.linktext {
+	margin-top: 3px;;
+}
+
+.row-fixed {
+	margin-bottom: 8px !important;
 }

@@ -29,18 +29,36 @@ class User extends Dao {
 
 	function save(\Model\User $user) {
 		$query = "INSERT INTO user (id, username, name, email, pass)
-					VALUES (".$user->getId().", '".$user->getUsername()."', '".$user->getName()."', '".$user->getEmail()."', '".md5($user->getPass())."')
+					VALUES (".$this->getIntOrNullForSQL($user->getId()).", "
+					.$this->getStringOrNullForSQL($user->getUsername()).", "
+					.$this->getStringOrNullForSQL($user->getName()).", "
+					.$this->getStringOrNullForSQL($user->getEmail()).", "
+					.$this->getStringOrNullForSQL(md5($user->getPass())).")
 					ON DUPLICATE KEY UPDATE
-						id = ".$user->getId().",
-						username = '".$user->getUsername()."',
-						name = '".$user->getName()."',
-						email = '".$user->getEmail()."'";
+						username = ".$this->getStringOrNullForSQL($user->getUsername()).",
+						name = ".$this->getStringOrNullForSQL($user->getName()).",
+						email = ".$this->getStringOrNullForSQL($user->getEmail())."";
 		if(empty($user->getPass())) {
-			$query.= ", pass = '".md5($user->getPass())."'";
+			$query.= ", pass = ".$this->getStringOrNullForSQL(md5($user->getPass()));
 		}
-		
 		$connection = $this->getConnection();
 		$connection->query($query);
 		//echo $query;
+		//die();
 	}
+
+	function getIntOrNullForSQL($int) {
+		if(is_null($int)) {
+			return 'null';
+		}
+		return $int;
+	}
+
+	function getStringOrNullForSQL($string) : string {
+		if(is_null($string)) {
+			return 'null';
+		}
+		return "'".$string."'";
+	}
+
 }

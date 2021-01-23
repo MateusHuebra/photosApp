@@ -52,7 +52,7 @@ class Authentication extends Controller {
 		}
 
 		$daoUser = new \Dao\User();
-		$modelUser = new \Model\User(null, $_POST['email'], null, $_POST['email'], $_POST['password']);
+		$modelUser = new \Model\User(null, $_POST['username'], null, $_POST['email'], $_POST['password']);
 		$daoUser->save($modelUser);
 		$this->redirect('authentication/login');
 	}

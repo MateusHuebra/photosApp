@@ -4,7 +4,7 @@ namespace Service;
 
 class General {
 	
-	function getProfilePicture(string $photo) {
+	function getProfilePicture($photo) {
 		if($photo){
 			return '/photosApp/images/profile/'.$photo;
 		} else {
@@ -12,7 +12,7 @@ class General {
 		}
 	}
 
-	function getCoverPicture(string $cover) {
+	function getCoverPicture($cover) {
 		if($cover){
 			return '/photosApp/images/cover/'.$cover;
 		} else {
