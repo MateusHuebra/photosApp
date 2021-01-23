@@ -15,7 +15,7 @@ class User extends Dao {
 	}
 
 	function getByEmail(string $email) {
-		$query = 'select * from user where email = "'.$usernameOrEmail.'"';
+		$query = 'select * from user where email = "'.$email.'"';
 		$connection = $this->getConnection();
 		$result = $connection->selectOne($query);
 		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo']);
