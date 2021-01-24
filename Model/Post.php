@@ -9,6 +9,8 @@ class Post {
     private $createdAt;
     private $userId;
 
+    private $user;
+
     function __construct(int $id = null, string $text = null, string $picture = null, string $createdAt = null, int $userId = null) {
         $this->id = $id;
         $this->text = $text;
@@ -31,5 +33,12 @@ class Post {
     }
     function getUserId() {
         return $this->userId;
-    }   
+    }
+
+    function getUser() : \Model\User {
+        if(is_null($this->user)) {
+            $this->user = (new \Dao\User())->getById($this->getUserId()); 
+        }
+        return $this->user;
+    }
 }

@@ -28,6 +28,13 @@ class User extends Dao {
 		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo'], $result['cover']);
 	}
 
+	function getById(int $id) {
+		$query = 'select * from user where id = '.$id;
+		$connection = $this->getConnection();
+		$result = $connection->selectOne($query);
+		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo'], $result['cover']);
+	}
+
 	function checkEmailExists(string $email) : bool {
 		$query = 'select email from user where email = "'.$email.'"';
 		$connection = $this->getConnection();

@@ -10,7 +10,21 @@ class Home extends LoggedController {
 
 	function getPosts() {
 		$daoPost = new \Dao\Post();
-		$this->json($daoPost->get());
+		$posts = $daoPost->get();
+		$results = [];
+		foreach ($posts as $post) {
+			$results[] = [
+				'id' => $post->getId(),
+				'text' => $post->getText(),
+				'picture' => $post->getPicture(),
+				'createdAt' => $post->getCreatedAt(),
+				'user' => [
+					'username' => $post->getUser()->getUsername(),
+					'photo' => $post->getUser()->getProfilePicture()
+				]
+			];
+		}
+		$this->json($results);
 	}
 
 }

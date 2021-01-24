@@ -5,12 +5,21 @@ namespace Dao;
 class Post extends Dao {
 
     function get() : array {
-        $query = "SELECT post.*, user.photo, user.username FROM post
-                JOIN user ON post.userId = user.Id
+        $query = "SELECT * FROM post
                 ORDER BY createdAt desc
                 limit 10";
         $connection = $this->getConnection();
-        return $connection->selectAll($query); 
+        $results = $connection->selectAll($query);
+        $posts = [];
+        foreach ($results as $result) {
+            $posts[] = new \Model\Post(
+                $result['id'],
+                $result['text'],
+                $result['picture'],
+                $result['createdAt'],
+                $result['userId']);
+        }
+        return $posts;
     }
 
     function save(\Model\Post $post) {
