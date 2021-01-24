@@ -21,6 +21,10 @@ abstract class Controller {
 		die();
 	}
 
+	protected function json($data) {
+		echo json_encode($data);
+	}
+
 	protected function showInfo() {
 		if(isset($_GET['info'])) {
 			return base64_decode($_GET['info']);

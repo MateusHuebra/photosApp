@@ -1,6 +1,3 @@
-<?php
-$profile = new \Service\Profile();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,27 +19,28 @@ $profile = new \Service\Profile();
 </head>
 
 <body>
-
+<div class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper indigo darken-4">
 			<a href="/photosApp/home" class="brand-logo center">photosApp</a>
 			<!--
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->
-			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src=<?php echo '"'.$profile->getProfilePicture($_SESSION['user']).'"'; ?> alt="" class="circle-mobile"></a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="#">Profile</a></li>
-				<li><img src=<?php echo '"'.$profile->getProfilePicture($_SESSION['user']).'"'; ?> alt="" class="circle"></li>
+				<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>
 	   		 	<li><a href="/photosApp/authentication/login">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
+</div>
 
 	<ul class="sidenav" id="mobile-demo">
 		<div>
 			<img src="/photosApp/images/cover.png" alt="" class="sidenav-photo">
-			<img src=<?php echo '"'.$profile->getProfilePicture($_SESSION['user']).'"'; ?> alt="" class="sidenav-circle">
+			<img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="sidenav-circle">
 		</div>
-	    <li><a href="#">Profile</a></li>
+	    <li><a href="/photosApp/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
 	    <li><a href="/photosApp/authentication/login">Logout</a></li>
  	</ul>

@@ -1,3 +1,12 @@
-<?php
-
-echo $profileUsername.' profile';
+<div class="row content-profile">
+    <div class="col s12 l4 offset-l4 no-padding">
+        <img src="<?php echo $user->getCoverPicture(); ?>" alt="" class="profile-cover">
+        <img src="<?php echo $user->getProfilePicture(); ?>" alt="" class="profile-picture">
+    </div>
+    
+    <div class="col s12 l4 offset-l4">
+        
+    texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço 
+        
+    </div>
+</div>

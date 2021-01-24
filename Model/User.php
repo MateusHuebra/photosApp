@@ -21,31 +21,43 @@ class User {
 		$this->cover = $cover;
 	}
 
+	
 	function getId() {
 		return $this->id;
 	}
-	
 	function getUsername() {
 		return $this->username;
 	}
-	
 	function getName() {
 		return $this->name;
 	}
-	
 	function getEmail() {
 		return $this->email;
 	}
-	
 	function getPass() {
 		return $this->pass;
 	}
-	
 	function getPhoto() {
 		return $this->photo;
 	}
-
 	function getCover() {
 		return $this->cover;
 	}
+
+	function getProfilePicture() {
+		if($this->getPhoto()){
+			return '/photosApp/images/database/'.$this->getId().'/'.$this->getPhoto();
+		} else {
+			return '/photosApp/images/profile.png';
+		}
+	}
+
+	function getCoverPicture() {
+		if($this->getCover()){
+			return '/photosApp/images/database/'.$this->getId().'/'.$this->getCover();
+		} else {
+			return '/photosApp/images/cover.png';
+		}
+	}
+
 }

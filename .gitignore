@@ -3,3 +3,4 @@ package-lock.json
 images/profile/**
 images/cover/**
 images/post/**
+images/database/**
