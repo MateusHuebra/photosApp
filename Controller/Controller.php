@@ -20,4 +20,16 @@ abstract class Controller {
 		header($location);
 		die();
 	}
+
+	protected function showInfo() {
+		if(isset($_GET['info'])) {
+			return base64_decode($_GET['info']);
+		}
+	}
+
+	protected function showErrorMessage() {
+		if(isset($_GET['error'])) {
+   	 		return base64_decode($_GET['error']);
+		}
+	}
 }

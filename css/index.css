@@ -32,3 +32,13 @@
     left: 5%;
     position: fixed;
 }
+
+.content-create {
+    margin-top: 0px;
+}
+
+#counter {
+    position: absolute;
+    bottom: 11px;
+    right: 11px;
+}

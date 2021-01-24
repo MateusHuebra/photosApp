@@ -57,15 +57,4 @@ class Authentication extends Controller {
 		$this->redirect('authentication/login');
 	}
 
-	private function showInfo() {
-		if(isset($_GET['info'])) {
-			return base64_decode($_GET['info']);
-		}
-	}
-
-	private function showErrorMessage() {
-		if(isset($_GET['error'])) {
-   	 		return base64_decode($_GET['error']);
-		}
-	}
 }
