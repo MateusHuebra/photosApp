@@ -13,7 +13,7 @@ class Create extends LoggedController {
 
     function post() {
         try {
-            $fileName = $this->uploadPicture("post/".$_SESSION['user']->getId(), time());
+            $fileName = $this->uploadPicture("database/".$_SESSION['user']->getId(), time());
         } catch(\Exception\UploadPictureError $exception) {
             $this->redirect('create', $exception->getMessage(), $_POST['postText']);
         } catch(\Exception $exception) {

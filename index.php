@@ -12,12 +12,21 @@ if(isset($requestUri[3]) && !preg_match("/^[?]/", $requestUri[3])) {
 	$methodName = 'index';
 }
 
-if(!file_exists(str_replace('\\', '/', $className).'.php') || !in_array($methodName, get_class_methods($className))) {
-	$className = 'Controller\\PageNotFound';
-	$methodName = 'index';
-}
-
 $connection = new Dao\Connection();
 
-$controller = new $className();
-$controller->$methodName();
+if(!file_exists(str_replace('\\', '/', $className).'.php') || !in_array($methodName, get_class_methods($className))) {
+	if((new \Dao\User())->checkUsernameExists($requestUri[2])) {
+		$className = 'Controller\\Profile';
+		$methodName = 'viewProfile';
+		$controller = new $className();
+		$controller->$methodName($requestUri[2]);
+	} else {
+		$className = 'Controller\\PageNotFound';
+		$methodName = 'index';
+		$controller = new $className();
+		$controller->$methodName();
+	}
+} else {
+	$controller = new $className();
+	$controller->$methodName();
+}
