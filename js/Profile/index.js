@@ -1,8 +1,8 @@
 $(function() {
     $.ajax({
-        url: "/photosApp/home/getPosts",
+        url: "/photosApp/profile/getPostsById",
         data: {
-            offset: 10
+            username: username
         },
         method: 'POST'
     }).done(function(posts) {
@@ -13,10 +13,9 @@ $(function() {
             html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
             if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
             html+= '</div> </div> </div>';
-            $('#feed').append(
+            $('#timeline').append(
                 html
             )
         });
     })
-
 })

@@ -48,4 +48,5 @@ abstract class LoggedController extends Controller {
 		}
 
 	}
+
 }

@@ -19,6 +19,7 @@ class Home extends LoggedController {
 				'picture' => $post->getPicture(),
 				'createdAt' => $post->getCreatedAt(),
 				'user' => [
+					'id' => $post->getUserId(),
 					'username' => $post->getUser()->getUsername(),
 					'photo' => $post->getUser()->getProfilePicture()
 				]
@@ -26,5 +27,5 @@ class Home extends LoggedController {
 		}
 		$this->json($results);
 	}
-
+	
 }

@@ -6,7 +6,16 @@
     
     <div class="col s12 l4 offset-l4">
         
-    texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço texto para preencher espaço 
-        
+    <div id="timeline">
+
+    </div>
+    
     </div>
 </div>
+
+<script type="text/javascript">
+<?php
+    echo 'var username = "'.$user->getUsername().'";';
+?>
+</script>
+<script type="text/javascript" src="/photosApp/js/Profile/index.js"></script>

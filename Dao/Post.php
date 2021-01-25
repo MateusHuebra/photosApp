@@ -5,8 +5,26 @@ namespace Dao;
 class Post extends Dao {
 
     function get() : array {
-        $query = "SELECT * FROM post
+        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId FROM post
                 ORDER BY createdAt desc
+                limit 10";
+        $connection = $this->getConnection();
+        $results = $connection->selectAll($query);
+        $posts = [];
+        foreach ($results as $result) {
+            $posts[] = new \Model\Post(
+                $result['id'],
+                $result['text'],
+                $result['picture'],
+                $result['createdAt'],
+                $result['userId']);
+        }
+        return $posts;
+    }
+
+    function getById(int $userId) : array {
+        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId FROM post
+                WHERE userId = ".$userId." ORDER BY createdAt desc
                 limit 10";
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);
