@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 <?php
-    echo 'var username = "'.$user->getUsername().'";';
+    echo 'var username = "'.$profileUser->getUsername().'";';
 ?>
 </script>
 <script type="text/javascript" src="/photosApp/js/Profile/index.js"></script>

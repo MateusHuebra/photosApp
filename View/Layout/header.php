@@ -5,6 +5,8 @@
 	<title>photosApp - log in</title>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="/photosApp/node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
 	<link rel="stylesheet" type="text/css" href="/photosApp/css/index.css">
@@ -56,5 +58,10 @@
 			<a href="/photosApp/authentication/login" class="waves-effect waves-red btn-flat">Yes</a>
 		</div>
 	</div>
-
+	
+	<script type="text/javascript">
+	<?php
+		echo 'var user = a;';
+	?>
+	</script>
 	<script type="text/javascript" src="/photosApp/js/Layout/Header.js"></script>

@@ -9,7 +9,7 @@ class Profile extends LoggedController {
         $daoUser = new \Dao\User();
         $user = $daoUser->getByUsername($username);
         $this->view('Profile/index', [
-            'user' => $user
+            'profileUser' => $user
         ]);
     }
 

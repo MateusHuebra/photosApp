@@ -21,6 +21,10 @@
     border-radius: 0 0 2px 2px;
 }
 
+.post-interactions {
+    border-top: 1px solid rgba(160,160,160,0.2);
+}
+
 .post-username {
     color: black;
     margin-left: 3px;
@@ -33,9 +37,10 @@
 }
 
 .post-createdAt {
-    font-size: 11px;
+    font-size: 0.8rem !important;
     position: absolute;
-    right: 7px;
+    right: 8px;
+    bottom: 7px;
 }
 
 .card {
@@ -53,6 +58,29 @@
     max-width: 35px;
     max-height: 35px;
     position: relative;
+}
+
+.post-like {
+    font-size: 1.4rem !important;
+    color: black;
+    vertical-align: bottom;
+}
+
+.post-likescounter {
+    font-size: 0.9rem !important;
+    border-right: 2px solid rgba(160,160,160,0.2);
+    padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.post-comments {
+    font-size: 0.9rem !important;
+    border-right: 2px solid rgba(160,160,160,0.2);
+    padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
 }
 
 .circle-mobile {
