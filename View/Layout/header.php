@@ -58,10 +58,14 @@
 			<a href="/photosApp/authentication/login" class="waves-effect waves-red btn-flat">Yes</a>
 		</div>
 	</div>
+<<<<<<< HEAD
 	
 	<script type="text/javascript">
 	<?php
 		echo 'var user = a;';
 	?>
 	</script>
+=======
+
+>>>>>>> d62847bd26365f112969d53e2985783ba917b91a
 	<script type="text/javascript" src="/photosApp/js/Layout/Header.js"></script>

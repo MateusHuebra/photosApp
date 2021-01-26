@@ -9,7 +9,11 @@ $(function() {
         console.log(posts);
         posts.forEach(post => {
             var html = '<div class="row"> <div class="col s12 m4 offset-m4"> <div class="card">';
+<<<<<<< HEAD
             html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post"> <span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span> </div>';
+=======
+            html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post"> <span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span> <span class="post-createdAt">'+post.createdAt+'</span> </div>';
+>>>>>>> d62847bd26365f112969d53e2985783ba917b91a
             html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
             if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
             html+= '<div class="post-content post-text post-interactions">';
