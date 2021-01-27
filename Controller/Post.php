@@ -68,7 +68,21 @@ class Post extends LoggedController {
 		$result = $daoLike->getCount($_POST['postId']);
 
 		$this->json($result);
-    }
+	}
+
+	function likesCount() {
+		$daoLike = new \Dao\Like();
+		$result = $daoLike->getCount($_POST['postId']);
+
+		$this->json($result);
+	}
+	
+	function seeLikes() {
+		$daoLike = new \Dao\Like();
+		$result = $daoLike->getLikes($_POST['postId']);
+
+		$this->json($result);
+	}
     
     function getPostsById() {
         $daoPost = new \Dao\Post();

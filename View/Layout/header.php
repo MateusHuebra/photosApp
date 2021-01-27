@@ -58,6 +58,9 @@
 			<a href="/photosApp/authentication/login" class="waves-effect waves-red btn-flat">Yes</a>
 		</div>
 	</div>
+
+	<i style="visibility: hidden; position: absolute;" class="material-icons">thumb_up</i>
+	<i style="visibility: hidden; position: absolute;" class="material-icons-outlined">thumb_up</i>
 	
 	<script type="text/javascript">
 	<?php

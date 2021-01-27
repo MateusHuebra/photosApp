@@ -10,6 +10,12 @@ class Like extends Dao {
 		return $connection->selectOne($query) != false;
     }
 
+    function getLikes(int $postId) {
+        $query = "SELECT id, username, photo FROM `like` JOIN user on `like`.userId = user.id WHERE postId = ".$postId;
+        $connection = $this->getConnection();
+		return $connection->selectAll($query);
+    }
+
     function getCount(int $postId) : int {
         $query = "SELECT count(*) as count FROM `like` WHERE postId = ".$postId;
         $connection = $this->getConnection();

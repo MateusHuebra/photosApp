@@ -9,11 +9,27 @@ $(function() {
         } else {
             html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
         }
-        html+='<span class="post-likescounter">'+post.likes+'</span>';
+        html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger">see likes</a></span>';
         html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">12 comments</a></span>';
         html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
         html+= '</div> </div> </div>';
+        $('#post').html('');
         $('#post').append(
             html
-        )
+        );
+        changeLikeText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'));
+
+    $('.profile-picture').on('click', function() {
+        $('.profile-editpicture').removeClass('hidden');
+    })
+
+    function changeLikeText(likes, object) {
+        console.log(likes);
+        if (likes == 1) {
+            object.text('like');
+        } else {
+            object.text('likes');
+        }
+    }
+
 })

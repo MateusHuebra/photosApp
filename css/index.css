@@ -171,6 +171,16 @@
     visibility: hidden;
 }
 
+.avatar {
+    min-height: 57px !important;
+    padding-left: 72px;
+    position: relative;
+}
+
+.likeslist-content {
+    padding: 0px !important;
+}
+
 #counter {
     position: absolute;
     bottom: 11px;
