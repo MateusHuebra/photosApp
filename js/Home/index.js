@@ -1,6 +1,6 @@
 $(function() {
     $.ajax({
-        url: "/photosApp/home/getPosts",
+        url: "/photosApp/post/getPosts",
         data: {
             offset: 10
         },
@@ -19,7 +19,7 @@ $(function() {
                 html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
             }
             html+='<span class="post-likescounter">'+post.likes+'</span>';
-            html+='<span class="post-comments">12 comments</span>';
+            html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">12 comments</a></span>';
             html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
             html+= '</div> </div> </div>';
             $('#feed').append(
@@ -29,10 +29,10 @@ $(function() {
     })
 
     var likescounter;
-    $(document).on('click', '.post-like', function() {
-        var url = "/photosApp/home/like";
+    $(document).on('mouseup', '.post-like', function() {
+        var url = "/photosApp/post/like";
         if($(this).hasClass('material-icons')) {
-            url = "/photosApp/home/dislike";
+            url = "/photosApp/post/dislike";
             $(this).addClass('material-icons-outlined');
             $(this).removeClass('material-icons');
         } else {

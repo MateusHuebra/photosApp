@@ -14,7 +14,7 @@
 <body>
 	<nav>
 		<div class="nav-wrapper indigo darken-4">
-			<a href="#!" class="brand-logo center">photosApp</a>
+			<a href="/photosApp/home" class="brand-logo center">photosApp</a>
 
 		</div>
 	</nav>

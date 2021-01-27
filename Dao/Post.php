@@ -41,6 +41,24 @@ class Post extends Dao {
         return $posts;
     }
 
+    function getOne(int $id, int $pic) {
+        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId
+                FROM post
+                WHERE id = ".$id;
+        $connection = $this->getConnection();
+        $result = $connection->selectOne($query);
+        if($result==false || explode('.',$result['picture'])[0] != $pic){
+            return false;
+        }
+        $post = new \Model\Post(
+            $result['id'],
+            $result['text'],
+            $result['picture'],
+            $result['createdAt'],
+            $result['userId']);
+        return $post;
+    }
+
     function save(\Model\Post $post) {
         $query = "INSERT INTO post (id, text, picture, userId)
                 VALUES (".$this->getIntOrNullForSQL($post->getId()).", "

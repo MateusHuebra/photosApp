@@ -1,6 +1,6 @@
 $(function() {
     $.ajax({
-        url: "/photosApp/profile/getPostsById",
+        url: "/photosApp/post/getPostsById",
         data: {
             username: username
         },
@@ -19,7 +19,7 @@ $(function() {
                 html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
             }
             html+='<span class="post-likescounter">'+post.likes+'</span>';
-            html+='<span class="post-comments">12 comments</span>';
+            html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">12 comments</a></span>';
             html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
             html+= '</div> </div> </div>';
             $('#timeline').append(
