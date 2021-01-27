@@ -5,7 +5,8 @@ namespace Dao;
 class Post extends Dao {
 
     function get() : array {
-        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId FROM post
+        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId
+                FROM post
                 ORDER BY createdAt desc
                 limit 10";
         $connection = $this->getConnection();

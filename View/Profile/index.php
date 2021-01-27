@@ -1,16 +1,16 @@
 <div class="row content-profile">
-    <div class="col s12 l4 offset-l4 no-padding">
-        <img src="<?php echo $user->getCoverPicture(); ?>" alt="" class="profile-cover">
-        <img src="<?php echo $user->getProfilePicture(); ?>" alt="" class="profile-picture">
+    <div class="col s12 l4 offset-l4 no-padding profile-content">
+        <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
+        <div class="profile-picturearea">
+            <img src="<?php echo $profileUser->getProfilePicture(); ?>" alt="" class="profile-picture">
+            <i class="material-icons profile-editpicture hidden">edit</i>
+        </div>
     </div>
-    
-    <div class="col s12 l4 offset-l4">
         
     <div id="timeline">
 
     </div>
-    
-    </div>
+
 </div>
 
 <script type="text/javascript">

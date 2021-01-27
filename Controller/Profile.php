@@ -22,6 +22,8 @@ class Profile extends LoggedController {
 		$posts = $daoPost->getById($id);
 		$results = [];
 		foreach ($posts as $post) {
+			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());
+			$likes = (new \Dao\Like())->getCount($post->getId());
 			$results[] = [
 				'id' => $post->getId(),
 				'text' => $post->getText(),
@@ -31,7 +33,9 @@ class Profile extends LoggedController {
 					'id' => $post->getUserId(),
 					'username' => $post->getUser()->getUsername(),
 					'photo' => $post->getUser()->getProfilePicture()
-				]
+				],
+				'liked' => $liked,
+				'likes' => $likes
 			];
 		}
 		$this->json($results);
