@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
+	<script type="text/javascript" src="/photosApp/node_modules/materialize-css/dist/js/materialize.min.js"></script>
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="/photosApp/node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection" />
 	<link rel="stylesheet" type="text/css" href="/photosApp/css/index.css">

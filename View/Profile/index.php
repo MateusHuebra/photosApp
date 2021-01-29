@@ -62,7 +62,10 @@
 
 <script type="text/javascript">
     <?php
-    echo 'var profileUsername = "' . $profileUser->getUsername() . '";';
+    echo 'var profileUsername = "' . $profileUser->getUsername() . '"; ';
+    if(!is_null($error)) {
+        echo 'M.toast({html: "'.$error.'", classes: "rounded"});';
+    }
     ?>
 </script>
 <script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>

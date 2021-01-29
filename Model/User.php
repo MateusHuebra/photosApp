@@ -44,6 +44,25 @@ class User {
 		return $this->cover;
 	}
 
+	function setUsername(string $value) {
+		$this->username = $value;
+	}
+	function setName(string $value) {
+		$this->name = $value;
+	}
+	function setEmail(string $value) {
+		$this->email = $value;
+	}
+	function setPass(string $value) {
+		$this->pass = $value;
+	}
+	function setPhoto(string $value) {
+		$this->photo = $value;
+	}
+	function setCover(string $value) {
+		$this->cover = $value;
+	}
+
 	function getProfilePicture() {
 		if($this->getPhoto()){
 			return '/photosApp/images/database/'.$this->getId().'/'.$this->getPhoto();

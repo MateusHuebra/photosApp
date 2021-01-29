@@ -67,4 +67,10 @@ class User extends Dao {
 		//die();
 	}
 
+	function savePhoto(string $photo, int $id) {
+		$query = 'UPDATE user SET photo = "'.$photo.'" WHERE id = '.$id;
+		$connection = $this->getConnection();
+		$connection->query($query);
+	}
+
 }

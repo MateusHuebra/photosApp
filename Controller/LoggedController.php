@@ -16,7 +16,7 @@ abstract class LoggedController extends Controller {
 		parent::view('Layout/footer');
 	}
 
-	protected function uploadPicture(string $targetFolder, string $targetName) {
+	protected function uploadPicture(string $targetFolder, string $targetName, bool $square = false, string $old = null) {
 		$targetFolder = "images/".$targetFolder."/";
 		if(!isset($_FILES['picture']) || empty($_FILES['picture']['name'])) {
 			throw new \Exception\UploadPictureError("No file was sent");
@@ -31,14 +31,17 @@ abstract class LoggedController extends Controller {
 		if($_FILES["picture"]["size"] > 10000000) {
 			throw new \Exception\UploadPictureError("Your file is too large");
 		}
-		if(getimagesize($_FILES["picture"]["tmp_name"])[0] != getimagesize($_FILES["picture"]["tmp_name"])[1]) {
-			//throw new \Exception\UploadPictureError("Your image is not a square");
+		if($square && (getimagesize($_FILES["picture"]["tmp_name"])[0] != getimagesize($_FILES["picture"]["tmp_name"])[1])) {
+			throw new \Exception\UploadPictureError("Your image is not a square");
 		}
 
 		if (!file_exists($targetFolder)) {
 			mkdir($targetFolder, 0777, true);
 		}
 
+		if(!is_null($old)) {
+			unlink($targetFolder.$old);
+		}
 		if(move_uploaded_file($_FILES["picture"]["tmp_name"], $target)){
 			//unlink($targetFolder.$currentUser['picture']);
 			//echo $target;
