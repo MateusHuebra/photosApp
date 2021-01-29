@@ -2,7 +2,7 @@ $(function() {
     $.ajax({
         url: "/photosApp/post/getPostsById",
         data: {
-            username: username
+            username: profileUsername
         },
         method: 'POST'
     }).done(function(posts) {
@@ -19,7 +19,7 @@ $(function() {
             } else {
                 html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
             }
-            html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger">see likes</a></span>';
+            html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger like-trigger">see likes</a></span>';
             html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">12 comments</a></span>';
             html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
             html+= '</div> </div> </div>';
@@ -30,8 +30,16 @@ $(function() {
         });
     })
 
+    var editPicTime = null;
+
     $('.profile-picture').on('click', function() {
-        $('.profile-editpicture').removeClass('hidden');
+        if(user.username == profileUsername) {
+            $('.profile-editpicture').removeClass('hidden');
+            clearTimeout(editPicTime);
+            editPicTime = setTimeout(function() {
+                $('.profile-editpicture').addClass('hidden');
+            }, 2000);
+        }
     })
 
     function changeLikeText(likes, object) {
@@ -42,5 +50,19 @@ $(function() {
             object.text('likes');
         }
     }
+
+    $('#pictureUpload').on('change', function() {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#pictureUploadPreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        } else {
+            $('#pictureUploadPreview').attr('src', user.photo);
+        }
+    })
 
 })

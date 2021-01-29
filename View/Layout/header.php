@@ -64,7 +64,7 @@
 	
 	<script type="text/javascript">
 	<?php
-		echo 'var userId = '.$_SESSION['user']->getId().';';
+		echo 'var user = {id:'.$_SESSION['user']->getId().', username:"'.$_SESSION['user']->getUsername().'", photo:"'.$_SESSION['user']->getProfilePicture().'"};';
 	?>
 	</script>
 	<script type="text/javascript" src="/photosApp/js/Layout/Header.js"></script>

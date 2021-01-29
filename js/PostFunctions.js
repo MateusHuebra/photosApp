@@ -19,7 +19,7 @@ $(function() {
         like();
     })
 
-    $(document).on('click', '.modal-trigger', function () {
+    $(document).on('click', '.like-trigger', function () {
         url = "/photosApp/post/likesCount";
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
@@ -31,11 +31,11 @@ $(function() {
             url: url,
             data: {
                 postId: postId,
-                userId: userId
+                userId: user.id
             },
             method: 'POST'
         }).done(function (count) {
-            likescounter.html(count + ' <a href="#modalLikes" class="color-black modal-trigger">see likes</a>');
+            likescounter.html(count + ' <a href="#modalLikes" class="color-black modal-trigger like-trigger">see likes</a>');
             changeLikeText(count, likescounter.find('.modal-trigger'));
             seeLikes();
         })
