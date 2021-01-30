@@ -29,5 +29,5 @@ function resetScrollTimer() {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(function() {
         fadeIn();
-    }, 2000)
+    }, 1000)
 }

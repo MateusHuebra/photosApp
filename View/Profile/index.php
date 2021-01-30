@@ -3,7 +3,7 @@
         <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
         <div class="profile-picturearea">
             <img src="<?php echo $profileUser->getProfilePicture(); ?>" alt="" class="profile-picture">
-            <i class="material-icons profile-editpicture hidden"><a class="color-black modal-trigger" href="#modalProfilePicture">edit</a></i>
+            <i class="material-icons profile-editpicture hidden"><a onclick="$('#pictureUpload').trigger('click');" class="color-black">edit</a></i>
         </div>
     </div>
 </div>
@@ -43,12 +43,12 @@
 
             <div class="file-field input-field">
                 <img id="pictureUploadPreview" class="sidenav-photo" src="<?php echo $_SESSION['user']->getProfilePicture(); ?>">
-                <div class="center btn blue darken-4">
+                <div style="left: -300px; position: absolute;" class="center btn blue darken-4">
                     <span>Select Picture</span>
                     <input id="pictureUpload" name="picture" type="file" multiple>
 
                 </div>
-                <div style="visibility: hidden;" class="file-path-wrapper">
+                <div style="left: -300px; position: absolute;" class="file-path-wrapper">
                     <input class="file-path validate" type="text" placeholder="Add a picture">
                 </div>
             </div>
@@ -72,7 +72,6 @@
     echo 'var profileUsername = "' . $profileUser->getUsername() . '"; ';
     if(!is_null($error)) {
         echo 'M.toast({html: "'.$error.'", classes: "rounded"});';
-        echo 'M.toast({html: " ", classes: "hidden"});';
     }
     ?>
 </script>
