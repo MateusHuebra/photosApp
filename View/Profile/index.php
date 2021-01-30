@@ -6,8 +6,9 @@
             <i class="material-icons profile-editpicture hidden"><a class="color-black modal-trigger" href="#modalProfilePicture">edit</a></i>
         </div>
     </div>
+</div>
 
-    <div id="timeline">
+    <div id="timeline" class="feed">
         <div class="preloader-wrapper active" style="left: 45%;top: 20px;">
             <div class="spinner-layer spinner-blue-only">
                 <div class="circle-clipper left">
@@ -23,7 +24,7 @@
         </div>
     </div>
 
-</div>
+
 
 
 <div id="modalLikes" class="modal modal-fixed-footer">
@@ -60,13 +61,21 @@
     </form>
 </div>
 
+<div class="fixed-action-btn">
+  <a href="/photosApp/create" class="btn-floating btn-large blue darken-4">
+    <i class="large material-icons">create</i>
+  </a>
+</div>
+
 <script type="text/javascript">
     <?php
     echo 'var profileUsername = "' . $profileUser->getUsername() . '"; ';
     if(!is_null($error)) {
         echo 'M.toast({html: "'.$error.'", classes: "rounded"});';
+        echo 'M.toast({html: " ", classes: "hidden"});';
     }
     ?>
 </script>
 <script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>
+<script type="text/javascript" src="/photosApp/js/CreateButton.js"></script>
 <script type="text/javascript" src="/photosApp/js/Profile/index.js"></script>

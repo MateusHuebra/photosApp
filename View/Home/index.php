@@ -1,4 +1,4 @@
-<div id="feed">
+<div id="feed" class="feed">
 <div class="preloader-wrapper active" style="left: 45%;top: 20px;">
     <div class="spinner-layer spinner-blue-only">
       <div class="circle-clipper left">
@@ -29,4 +29,5 @@
 </div>
 
 <script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>
+<script type="text/javascript" src="/photosApp/js/CreateButton.js"></script>
 <script type="text/javascript" src="/photosApp/js/Home/index.js"></script>

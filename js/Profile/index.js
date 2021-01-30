@@ -34,13 +34,17 @@ $(function() {
 
     $('.profile-picture').on('click', function() {
         if(user.username == profileUsername) {
-            $('.profile-editpicture').removeClass('hidden');
+            $('.profile-editpicture').removeClass('fade-out');
+            $('.profile-editpicture').addClass('fade-in');
             clearTimeout(editPicTime);
             editPicTime = setTimeout(function() {
-                $('.profile-editpicture').addClass('hidden');
+                $('.profile-editpicture').removeClass('fade-in');
+                $('.profile-editpicture').addClass('fade-out');
             }, 2000);
         }
     })
+
+    $('.profile-picture').trigger('click');
 
     function changeLikeText(likes, object) {
         console.log(likes);

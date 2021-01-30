@@ -134,9 +134,10 @@
     margin-top: 1.2%;
     max-height: 12vh;
     max-width: 20vh;
-    max-height: 70px;*/
+    max-height: 70px;
+    max-width: 25%;*/
     border-radius: 50%;
-    max-width: 25%;
+    max-width: 85px;
 }
 
 .profile-editpicture {
@@ -144,7 +145,7 @@
     background-color: white;
     position: absolute;
     top: -6%;
-    left: 15%;
+    right: -6%;
     padding: 4px;
     border: 2px solid;
 }
@@ -181,9 +182,63 @@
     padding: 0px !important;
 }
 
+.row {
+    margin-bottom: 0px !important;
+}
+
+.feed {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
 #counter {
     position: absolute;
     bottom: 11px;
     right: 11px;
     font-size: 0.9rem;
+}
+
+
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+	animation-name: fadeOutOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+        opacity: 0;
+        visibility: visible;
+    }
+	100% {
+        opacity: 1;
+        visibility: visible;
+	}
+}
+
+@keyframes fadeOutOpacity {
+	0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    99% {
+        opacity: 0;
+        visibility: visible;
+	}
+	100% {
+        opacity: 0;
+        visibility: hidden;
+	}
 }
