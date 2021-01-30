@@ -34,17 +34,19 @@ $(function() {
 
     $('.profile-picture').on('click', function() {
         if(user.username == profileUsername) {
-            $('.profile-editpicture').removeClass('fade-out');
-            $('.profile-editpicture').addClass('fade-in');
+            $('#profile-picture').removeClass('fade-out');
+            $('#profile-picture').addClass('fade-in');
             clearTimeout(editPicTime);
             editPicTime = setTimeout(function() {
-                $('.profile-editpicture').removeClass('fade-in');
-                $('.profile-editpicture').addClass('fade-out');
+                $('#profile-picture').removeClass('fade-in');
+                $('#profile-picture').addClass('fade-out');
             }, 2000);
         }
     })
-
-    $('.profile-picture').trigger('click');
+    
+    $(window).on('load', function() {
+        $('.profile-picture').trigger('click');
+    })
 
     function changeLikeText(likes, object) {
         console.log(likes);
