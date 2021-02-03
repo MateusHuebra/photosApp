@@ -20,7 +20,11 @@ $(function() {
                 html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
             }
             html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger like-trigger">likes</a></span>';
-            html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">12 comments</a></span>';
+            if(post.comments==1) {
+                html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">1 comments</a></span>';
+            } else {
+                html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">'+post.comments+' comments</a></span>';
+            }
             html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
             html+= '</div> </div> </div>';
             $('#feed').append(

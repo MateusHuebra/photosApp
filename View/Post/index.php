@@ -13,9 +13,16 @@
 </div>
 
 
-<div id="page" class="hidden">
+<div id="page" class="hidden page-forcomments">
 	<div id="post">
 
+	</div>
+
+	<div class="row">
+	<div class="col s12 l4 offset-l4 input-field comments-input">
+		<textarea id="textarea1" maxlength="255" rows="5" class="materialize-textarea"></textarea>
+		<label for="textarea1">Add a comment</label>
+	</div>
 	</div>
 
 	<div id="modalLikes" class="modal modal-fixed-footer">

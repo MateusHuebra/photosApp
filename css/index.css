@@ -1,3 +1,8 @@
+body {
+    height: 100%;
+    overflow-y: auto;
+}
+
 .content-profile {
     margin-top: 0px;
 }
@@ -23,12 +28,32 @@
 
 .post-interactions {
     border-top: 1px solid rgba(160,160,160,0.2);
+    position: relative;
+}
+
+.post-seeComments {
+    border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.post-seeComment {
+    margin-bottom: 2px;
 }
 
 .post-username {
     color: black;
     margin-left: 3px;
     font-weight: 500;
+}
+
+.comment-username {
+    color: black;
+    font-weight: 500;
+}
+
+.comment-load {
+    text-align: center;
+    background-color: gainsboro;
+    margin-bottom: 2px;
 }
 
 .color-black {
@@ -76,6 +101,14 @@
     padding-right: 7px;
     padding-top: 7px;
     padding-bottom: 7px;
+}
+
+.page-forcomments {
+    max-height: calc(100% - 110px);
+    max-width: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    padding-bottom: 10px;
 }
 
 .post-comments {
@@ -198,6 +231,13 @@
     font-size: 0.9rem;
 }
 
+.comments-input {
+    position: fixed;
+    bottom: -17px;
+    max-height: 250px;
+    background-color: white;
+    border-top: 1px solid rgb(158, 158, 158);
+}
 
 .fade-in {
     opacity: 1;

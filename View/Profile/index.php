@@ -19,7 +19,7 @@
             <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
             <div class="profile-picturearea">
                 <img src="<?php echo $profileUser->getProfilePicture(); ?>" alt="" class="profile-picture">
-                <button id="profile-picture" onclick="$('#pictureUpload').trigger('click');" class="color-black btn-floating waves-effect waves-light blue darken-4" style="position: absolute; right: -10px; top: -10px;"><i class="material-icons">edit</i></button>
+                <button id="profile-picture" onclick="$('#pictureUpload').trigger('click');" class="color-black btn-floating waves-effect  blue darken-4" style="position: absolute; right: -10px; top: -10px;"><i class="material-icons">edit</i></button>
             </div>
         </div>
     </div>

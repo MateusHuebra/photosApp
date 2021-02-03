@@ -37,6 +37,7 @@ class Post extends LoggedController {
 		foreach ($posts as $post) {
 			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());
 			$likes = (new \Dao\Like())->getCount($post->getId());
+			$comments = (new \Dao\Comment())->getCount($post->getId());
 			$results[] = [
 				'id' => $post->getId(),
 				'text' => $post->getText(),
@@ -48,7 +49,8 @@ class Post extends LoggedController {
 					'photo' => $post->getUser()->getProfilePicture()
 				],
 				'liked' => $liked,
-				'likes' => $likes
+				'likes' => $likes,
+				'comments' => $comments
 			];
 		}
 		$this->json($results);
@@ -95,6 +97,7 @@ class Post extends LoggedController {
 		foreach ($posts as $post) {
 			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());
 			$likes = (new \Dao\Like())->getCount($post->getId());
+			$comments = (new \Dao\Comment())->getCount($post->getId());
 			$results[] = [
 				'id' => $post->getId(),
 				'text' => $post->getText(),
@@ -106,10 +109,44 @@ class Post extends LoggedController {
 					'photo' => $post->getUser()->getProfilePicture()
 				],
 				'liked' => $liked,
-				'likes' => $likes
+				'likes' => $likes,
+				'comments' => $comments
 			];
 		}
 		$this->json($results);
-    }
+	}
+	
+	function getPostComments() {
+		$daoComment = new \Dao\Comment();
+		if(isset($_POST['lastCommentId']) && !is_null($_POST['lastCommentId'])) {
+			$comments = $daoComment->get($_POST['postId'], $_POST['lastCommentId']);
+		} else {
+			$comments = $daoComment->get($_POST['postId']);
+		}
+		if($comments) {
+			foreach ($comments as $comment) {
+				$results[] = [
+					'id' => $comment->getId(),
+					'text' => $comment->getText(),
+					'createdAt' => $comment->getCreatedAt(),
+					'user' => [
+						'id' => $comment->getUserId(),
+						'username' => $comment->getUser()->getUsername(),
+						'photo' => $comment->getUser()->getProfilePicture()
+					]
+				];
+			}
+			$this->json($results);
+		} else {
+			$this->json(false);
+		}
+	}
+
+	function getCountComments() {
+		$daoComment = new \Dao\Comment();
+		$result = $daoComment->getCount($_POST['postId']);
+
+		$this->json($result);
+	}
     
 }

@@ -45,7 +45,11 @@ $(function() {
     })
     
     $(window).on('load', function() {
-        $('.profile-picture').trigger('click');
+        if(user.username == profileUsername) {
+            $('.profile-picture').trigger('click');
+        } else {
+            $('#profile-picture').addClass('hidden');
+        }
     })
 
     function changeLikeText(likes, object) {
