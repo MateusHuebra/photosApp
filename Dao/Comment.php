@@ -24,6 +24,13 @@ class Comment extends Dao {
         return $comments;
     }
 
+    function set(int $postId, int $userId, string $text) {
+        $query = "INSERT INTO comment (postId, userId, text)
+                VALUES ({$postId}, {$userId}, '{$text}')";
+		$connection = $this->getConnection();
+		$connection->query($query);
+    }
+
     function getCount(int $postId) {
         $query = "SELECT count(id) as 'count' FROM comment WHERE postId = ".$postId;
         $connection = $this->getConnection();

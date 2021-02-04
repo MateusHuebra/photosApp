@@ -1,4 +1,5 @@
 var lastCommentId = null;
+var sending = false;
 
 $(function() {
     var html = '<div class="row"> <div class="col s12 m4 offset-m4"> <div class="card">';
@@ -67,6 +68,33 @@ function loadComments() {
         }
         countComments();
         $(document).find('#comment-load').text('see more comments');
+    })
+
+    $(document).on('click', '#sendComment', function() {
+        if(sending == false) {
+            sending = true;
+            sendComment();
+        }
+    })
+
+}
+
+function sendComment() {
+    $.ajax({
+        url: "/photosApp/post/sendComment",
+        data: {
+            postId: post.id,
+            text: $('#commentTextarea').val()
+        },
+        method: 'POST'
+    }).done(function(result) {
+        sending = false;
+        if(result!=false) {
+            M.Modal.getInstance($('#modalCommentError')).open();
+            $(document).find('#modalCommentError').find('.modal-content').text(result);
+        } else {
+            $('#commentTextarea').val('');
+        }
     })
 }
 

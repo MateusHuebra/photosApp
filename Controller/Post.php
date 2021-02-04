@@ -148,5 +148,21 @@ class Post extends LoggedController {
 
 		$this->json($result);
 	}
+
+	function sendComment() {
+		try {
+			(new \Service\Comment())->validateComment($_POST['text']);
+		} catch (\Exception\InvalidComment $exception) {
+			echo $exception->getMessage();
+			die();
+		} catch (\Exception $exception) {
+			echo 'Something gone wrong';
+			die();
+		}
+
+		$daoComment = new \Dao\Comment();
+		$daoComment->set($_POST['postId'], $_SESSION['user']->getId(), $_POST['text']);
+		
+	}
     
 }

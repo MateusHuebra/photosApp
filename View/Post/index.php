@@ -20,8 +20,13 @@
 
 	<div class="row">
 	<div class="col s12 l4 offset-l4 input-field comments-input">
-		<textarea id="textarea1" maxlength="255" rows="5" class="materialize-textarea"></textarea>
-		<label for="textarea1">Add a comment</label>
+		<textarea style="padding-right: 50px;" id="commentTextarea" maxlength="255" rows="5" class="materialize-textarea"></textarea>
+		<label for="commentTextarea">Add a comment</label>
+
+		<button id="sendComment" style=" position: absolute; right: 10px; bottom: 17px;" class="btn blue darken-4">
+			<i class="material-icons">send</i>
+		</button>
+
 	</div>
 	</div>
 
@@ -32,6 +37,14 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#!" class="modal-close waves-effect waves btn-flat">Close</a>
+		</div>
+	</div>
+
+	<div id="modalCommentError" class="modal">
+		<div class="modal-content">
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
 		</div>
 	</div>
 </div>
