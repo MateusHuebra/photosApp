@@ -1,4 +1,5 @@
 var likescounter;
+var commentscounter;
 var postId;
 var url;
 var lastPostId;
@@ -16,6 +17,7 @@ $(function() {
             $(this).addClass('material-icons');
             $(this).removeClass('material-icons-outlined');
         }
+        commentscounter = $(this).parent().find('.post-comments').find('a');
         likescounter = $(this).parent().find('.post-likescounter');
         postId = $(this).parent().data('postid');
         like();
@@ -23,6 +25,7 @@ $(function() {
 
     $(document).on('click', '.like-trigger', function () {
         url = "/photosApp/post/likesCount";
+        commentscounter = $(this).parent().parent().find('.post-comments').find('a');
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
         like();
@@ -70,7 +73,7 @@ function loadPost(post, showComments = false) {
         $('#posts').append(
             html
         );
-        changeLikeText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'));
+        changeLikeAndCommentText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'), post.comments, $(document).find(`[data-postid='${post['id']}']`).find('.post-comments').find('a'));
         lastPostId = post.id;
         //console.log("lastPostId: "+lastPostId);
 }
@@ -83,9 +86,9 @@ function like() {
             userId: user.id
         },
         method: 'POST'
-    }).done(function (count) {
-        likescounter.html(count + ' <a href="#modalLikes" class="color-black modal-trigger like-trigger">see likes</a>');
-        changeLikeText(count, likescounter.find('.modal-trigger'));
+    }).done(function (result) {
+        likescounter.html(result.like + ' <a href="#modalLikes" class="color-black modal-trigger like-trigger">see likes</a>');
+        changeLikeAndCommentText(result.like, likescounter.find('.modal-trigger'), result.comment, commentscounter);
         seeLikes();
     })
 }
@@ -116,11 +119,19 @@ function seeLikes() {
     })
 }
 
-function changeLikeText(likes, object) {
+function changeLikeAndCommentText(likes, likesObject, comments, commentsObject) {
     console.log("likes: "+ likes);
+    console.log("comments: "+ comments);
+
     if (likes == 1) {
-        object.text('like');
+        likesObject.text('like');
     } else {
-        object.text('likes');
+        likesObject.text('likes');
+    }
+
+    if (comments == 1) {
+        commentsObject.text('1 comment');
+    } else {
+        commentsObject.text(comments+' comments');
     }
 }

@@ -58,23 +58,29 @@ class Post extends LoggedController {
 
 	function like() {
 		$daoLike = new \Dao\Like();
+		$daoComment = new \Dao\Comment();
 		$daoLike->set($_POST['postId'], $_POST['userId']);
-		$result = $daoLike->getCount($_POST['postId']);
-
+		$result['like'] = $daoLike->getCount($_POST['postId']);
+		$result['comment'] = $daoComment->getCount($_POST['postId']);
+		
 		$this->json($result);
 	}
 
 	function dislike() {
 		$daoLike = new \Dao\Like();
+		$daoComment = new \Dao\Comment();
 		$daoLike->unset($_POST['postId'], $_POST['userId']);
-		$result = $daoLike->getCount($_POST['postId']);
+		$result['like'] = $daoLike->getCount($_POST['postId']);
+		$result['comment'] = $daoComment->getCount($_POST['postId']);
 
 		$this->json($result);
 	}
 
 	function likesCount() {
 		$daoLike = new \Dao\Like();
-		$result = $daoLike->getCount($_POST['postId']);
+		$daoComment = new \Dao\Comment();
+		$result['like'] = $daoLike->getCount($_POST['postId']);
+		$result['comment'] = $daoComment->getCount($_POST['postId']);
 
 		$this->json($result);
 	}
