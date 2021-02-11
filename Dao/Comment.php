@@ -4,10 +4,12 @@ namespace Dao;
 
 class Comment extends Dao {
 
-    function get(int $postId, $lastCommentId = null) {
+    function get(int $postId, $lastCommentId = null, $recentCommentId = null) {
         $query = "SELECT id, userId, text, createdAt FROM comment WHERE postId = ".$postId;
         if($lastCommentId) {
             $query.= " and id < ".$lastCommentId;
+        } else if ($recentCommentId) {
+            $query.= " and id > ".$recentCommentId;
         }
         $query.=" ORDER BY createdAt desc limit 3";
         $connection = $this->getConnection();

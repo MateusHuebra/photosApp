@@ -120,6 +120,8 @@ class Post extends LoggedController {
 		$daoComment = new \Dao\Comment();
 		if(isset($_POST['lastCommentId']) && !is_null($_POST['lastCommentId'])) {
 			$comments = $daoComment->get($_POST['postId'], $_POST['lastCommentId']);
+		} else if(isset($_POST['recentCommentId']) && !is_null($_POST['recentCommentId'])) {
+			$comments = $daoComment->get($_POST['postId'], null, $_POST['recentCommentId']);
 		} else {
 			$comments = $daoComment->get($_POST['postId']);
 		}

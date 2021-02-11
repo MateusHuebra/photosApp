@@ -19,6 +19,19 @@ $(function() {
 
 })
 
+function loadRecentComments() {
+    $.ajax({
+        url: "/photosApp/post/getPostComments",
+        data: {
+            postId: post.id,
+            recentCommentId: recentCommentId
+        },
+        method: 'POST'
+    }).done(function(comments) {
+        showComments(comments, true);
+    })
+}
+
 function loadComments() {
     $.ajax({
         url: "/photosApp/post/getPostComments",
@@ -28,21 +41,7 @@ function loadComments() {
         },
         method: 'POST'
     }).done(function(comments) {
-        if(comments!=false) {
-            comments.forEach(comment => {
-                var html= '<div class="post-seeComment">';
-                html+= '<span><a class="comment-username" href="/photosApp/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
-                html+= '<span> '+comment.text+'</span>';
-                html+= '</div>';
-                $('.comment-load').after(html)
-            });
-            lastCommentId = comments[comments.length-1].id;
-            if(recentCommentId==null || recentCommentId<comments[0].id) {
-                recentCommentId = comments[0].id;
-            }
-            console.log('last: '+lastCommentId+' - recent: '+recentCommentId);
-        }
-        countComments();
+        showComments(comments);
         $(document).find('#comment-load').text('see more comments');
     })
 
@@ -52,7 +51,30 @@ function loadComments() {
             sendComment();
         }
     })
+}
 
+function showComments(comments, recent = false) {
+    if(comments!=false) {
+        comments.forEach(comment => {
+            var html= '<div class="post-seeComment">';
+            html+= '<span><a class="comment-username" href="/photosApp/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
+            html+= '<span> '+comment.text+'</span>';
+            html+= '</div>';
+            if(recent==false) {
+                $('.comment-load').after(html)
+            } else {
+                $('.post-seeComments').append(html)
+            }
+        });
+        if(recent==false) {
+            lastCommentId = comments[comments.length-1].id;
+        }
+        if(recentCommentId==null || recentCommentId<comments[0].id) {
+            recentCommentId = comments[0].id;
+        }
+        console.log('last: '+lastCommentId+' - recent: '+recentCommentId);
+    }
+    countComments();
 }
 
 function sendComment() {
@@ -71,6 +93,7 @@ function sendComment() {
         } else {
             $('#commentTextarea').val('');
         }
+        loadRecentComments();
     })
 }
 
