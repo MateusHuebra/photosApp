@@ -13,7 +13,7 @@
 </div>
 
 <div id="page" class="hidden">
-  <div id="feed" class="feed">
+  <div id="posts" class="feed">
 
   </div>
 

@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div id="timeline" class="feed">
+    <div id="posts" class="feed">
 
     </div>
 

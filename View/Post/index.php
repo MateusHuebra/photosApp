@@ -14,7 +14,7 @@
 
 
 <div id="page" class="hidden page-forcomments">
-	<div id="post">
+	<div id="posts">
 
 	</div>
 

@@ -1,38 +1,10 @@
 var lastCommentId = null;
+var recentCommentId = null;
 var sending = false;
 
 $(function() {
-    var html = '<div class="row"> <div class="col s12 m4 offset-m4"> <div class="card">';
-        html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post"> <span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span> </div>';
-        html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
-        if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
-        html+= '<div data-postid="'+post['id']+'" class="post-content post-text post-interactions">';
-        if(post.liked) {
-            html+='<i id="like" class="post-like material-icons">thumb_up</i> ';
-        } else {
-            html+='<i id="like" class="post-like material-icons-outlined">thumb_up</i> ';
-        }
-        html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger like-trigger">see likes</a></span>';
-        html+='<span class="post-comments"><a href="#" class="color-black"> comments</a></span>';
-        html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>';
-        html+= '<div data-postid="'+post['id']+'" class="post-content post-text post-seeComments">';
-        html+= '<div class="comment-load"><span id="comment-load">see more comments</span></div>';
-        html+= '</div> </div> </div>';
-        $('#post').html('');
-        $('#post').append(
-            html
-        );
-        changeLikeText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'));
 
-    function changeLikeText(likes, object) {
-        console.log(likes);
-        if (likes == 1) {
-            object.text('like');
-        } else {
-            object.text('likes');
-        }
-    }
-
+    loadPost(post, true);
     loadComments();
 
     $(document).on('click', '#comment-load', function() {
@@ -65,6 +37,10 @@ function loadComments() {
                 $('.comment-load').after(html)
             });
             lastCommentId = comments[comments.length-1].id;
+            if(recentCommentId==null || recentCommentId<comments[0].id) {
+                recentCommentId = comments[0].id;
+            }
+            console.log('last: '+lastCommentId+' - recent: '+recentCommentId);
         }
         countComments();
         $(document).find('#comment-load').text('see more comments');
