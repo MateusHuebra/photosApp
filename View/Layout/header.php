@@ -32,7 +32,8 @@
 			-->
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#">Profile</a></li>
+					<li><a href="/photosApp/home">Home</a></li>
+					<li><a href="/photosApp/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>
 					<li><a class="modal-trigger" href="#modalLogout">Logout</a></li>
 				</ul>
@@ -45,6 +46,7 @@
 			<img src="/photosApp/images/cover.png" alt="" class="sidenav-photo">
 			<img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="sidenav-circle">
 		</div>
+		<li><a href="/photosApp/home">Home</a></li>
 		<li><a href="/photosApp/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
 		<li><a class="modal-trigger" href="#modalLogout">Logout</a></li>
 	</ul>

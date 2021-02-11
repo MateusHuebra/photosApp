@@ -14,6 +14,7 @@ $(function() {
         } else {
             loadText.text('loading more comments...');
             loadComments();
+            loadRecentComments();
         }
     })
 
@@ -55,6 +56,7 @@ function loadComments() {
 
 function showComments(comments, recent = false) {
     if(comments!=false) {
+        var lastComment = $('.post-seeComments').children().last();
         comments.forEach(comment => {
             var html= '<div class="post-seeComment">';
             html+= '<span><a class="comment-username" href="/photosApp/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
@@ -63,10 +65,10 @@ function showComments(comments, recent = false) {
             if(recent==false) {
                 $('.comment-load').after(html)
             } else {
-                $('.post-seeComments').append(html)
+                lastComment.after(html)
             }
         });
-        if(recent==false) {
+        if(recentCommentId==null || recent==false) {
             lastCommentId = comments[comments.length-1].id;
         }
         if(recentCommentId==null || recentCommentId<comments[0].id) {
