@@ -32,7 +32,7 @@ class Post extends LoggedController {
 
     function getPosts() {
 		$daoPost = new \Dao\Post();
-		$posts = $daoPost->get();
+		$posts = $daoPost->get($_POST['lastPostId']);
 		$results = [];
 		foreach ($posts as $post) {
 			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());
@@ -92,7 +92,7 @@ class Post extends LoggedController {
         $username = $_POST['username'];
         $user = $daoUser->getByUsername($username);
         $id = $user->getId();
-		$posts = $daoPost->getById($id);
+		$posts = $daoPost->getById($id, $_POST['lastPostId']);
 		$results = [];
 		foreach ($posts as $post) {
 			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());

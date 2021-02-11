@@ -1,14 +1,6 @@
 $(function() {
-    $.ajax({
-        url: "/photosApp/post/getPostsById",
-        data: {
-            username: profileUsername
-        },
-        method: 'POST'
-    }).done(function(posts) {
-        console.log(posts);
-        loadPosts(posts);
-    })
+    
+    loadPostsAjax();
 
     var editPicTime = null;
 
@@ -50,3 +42,20 @@ $(function() {
     })
 
 })
+
+function loadPostsAjax(lastPostId = 0) {
+    $.ajax({
+        url: "/photosApp/post/getPostsById",
+        data: {
+            username: profileUsername,
+            lastPostId: lastPostId
+        },
+        method: 'POST'
+    }).done(function(posts) {
+
+        console.log("lastPostId: "+lastPostId);
+        console.log(posts);
+        loadPosts(posts);
+
+    })
+}

@@ -4,11 +4,17 @@ namespace Dao;
 
 class Post extends Dao {
 
-    function get() : array {
+    const postsLoadedAtATime = 3;
+
+    function get(int $lastPostId = 0) : array {
         $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId
-                FROM post
-                ORDER BY createdAt desc
-                limit 10";
+                FROM post ";
+
+        if($lastPostId != 0) {
+            $query .= "WHERE id < {$lastPostId} ";
+        }
+        $query .= "ORDER BY createdAt desc limit ".Post::postsLoadedAtATime;
+        
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);
         $posts = [];
@@ -23,10 +29,14 @@ class Post extends Dao {
         return $posts;
     }
 
-    function getById(int $userId) : array {
+    function getById(int $userId, int $lastPostId = 0) : array {
         $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId FROM post
-                WHERE userId = ".$userId." ORDER BY createdAt desc
-                limit 10";
+                WHERE userId = ".$userId;
+        if($lastPostId != 0) {
+            $query .= " and id < {$lastPostId}";
+        }
+        $query .=  " ORDER BY createdAt desc limit".Post::postsLoadedAtATime;
+        
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);
         $posts = [];
