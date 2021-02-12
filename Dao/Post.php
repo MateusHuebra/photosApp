@@ -13,7 +13,7 @@ class Post extends Dao {
         if($lastPostId != 0) {
             $query .= "WHERE id < {$lastPostId} ";
         }
-        $query .= "ORDER BY createdAt desc limit ".Post::postsLoadedAtATime;
+        $query .= "ORDER BY id desc limit ".Post::postsLoadedAtATime;
         
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);
@@ -35,7 +35,7 @@ class Post extends Dao {
         if($lastPostId != 0) {
             $query .= " and id < {$lastPostId}";
         }
-        $query .=  " ORDER BY createdAt desc limit ".Post::postsLoadedAtATime;
+        $query .=  " ORDER BY id desc limit ".Post::postsLoadedAtATime;
         
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);

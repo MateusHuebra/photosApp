@@ -3,6 +3,7 @@ var commentscounter;
 var postId;
 var url;
 var lastPostId;
+var scrollDetected = false;
 
 $(function() {
     $('#posts').html('');
@@ -39,8 +40,12 @@ $(function() {
 
     $(window).on('scroll', function() {
         var scrollPosition = $(window).scrollTop();
-        var scrollMax = $(document).height() - $(window).height();
-        if(scrollPosition == scrollMax) {
+        //var scrollMax = $('body').prop('scrollHeight') - $(window).height() + 50;
+        var scrollMax = $(document).height() - window.visualViewport.height - 10;
+        console.log('scrollPosition: '+scrollPosition+' - scrollMax:'+scrollMax);
+        //$('.brand-logo').text('scrollPosition: '+scrollPosition+' - scrollMax:'+scrollMax);
+        if(scrollPosition >= scrollMax && !scrollDetected) {
+            scrollDetected = true;
             loadPostsAjax(lastPostId);
         }
     })
@@ -51,6 +56,7 @@ function loadPosts(posts) {
         posts.forEach(post => {
             loadPost(post);
         })
+        scrollDetected = false;
 }
 
 function loadPost(post, showComments = false) {
