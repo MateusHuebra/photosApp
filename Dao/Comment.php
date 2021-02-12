@@ -11,7 +11,7 @@ class Comment extends Dao {
         } else if ($recentCommentId) {
             $query.= " and id > ".$recentCommentId;
         }
-        $query.=" ORDER BY createdAt desc limit 3";
+        $query.=" ORDER BY createdAt desc limit 5";
         $connection = $this->getConnection();
 		$results = $connection->selectAll($query);
         $comments = [];

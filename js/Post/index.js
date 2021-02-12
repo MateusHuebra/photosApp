@@ -59,11 +59,10 @@ function loadComments() {
     }).done(function(comments) {
         if(comments) {
             showComments(comments);
-            $(document).find('#comment-load').text('see more comments');
         } else {
             $(document).find('#comment-load').remove();
+            countComments();
         }
-        countComments();
     })
 
     $(document).on('click', '#sendComment', function() {
@@ -144,6 +143,8 @@ function countComments() {
         console.log(commentsLoaded+' of '+count+' comments loaded');
         if(commentsLoaded == count) {   
             $(document).find('#comment-load').remove();
+        } else {
+            $(document).find('#comment-load').text('see more '+(count - commentsLoaded)+' comments');
         }
     })
 }
