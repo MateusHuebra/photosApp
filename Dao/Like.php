@@ -33,5 +33,11 @@ class Like extends Dao {
         $connection = $this->getConnection();
         $connection->query($query);
     }
+    
+    function deleteAll(int $postId) {
+        $query = "DELETE FROM `like` WHERE postId = ".$postId;
+        $connection = $this->getConnection();
+        $connection->query($query);
+    }
 
 }

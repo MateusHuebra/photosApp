@@ -1,3 +1,7 @@
+body {
+    user-select: none;
+}
+
 .content-profile {
     margin-top: 0px;
 }

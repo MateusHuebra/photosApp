@@ -51,7 +51,7 @@ $(function() {
         }
     })
 
-    $(document).on('click', '.dropdown-trigger', function() {
+    $(document).on('click', '.dropdownWithoutSelection-trigger', function() {
         moreSelectedPost = $(this).parent().parent().find('.post-interactions').data('postid');
     })
 
@@ -65,6 +65,25 @@ $(function() {
         $('#selection').trigger('blur');
         M.Toast.dismissAll();
         M.toast({html: "copied to the clipboard", classes: "rounded"});
+    })
+
+    $('#modalDeletePostConfirm').on('click', function() {
+        var postToBeDeleted = moreSelectedPost;
+        console.log('trying to delete post id'+postToBeDeleted);
+        $.ajax({
+            url: '/photosApp/post/delete',
+            data: {
+                postid: postToBeDeleted
+            },
+            method: 'POST'
+        }).done(function(result) {
+            if(result=='') {
+                M.toast({html: "your post has been deleted", classes: "rounded"});
+                $(document).find(`[data-postid='${postToBeDeleted}']`).parent().parent().parent().remove();
+            } else {
+                M.toast({html: result, classes: "rounded"});
+            }
+        })
     })
 
 })
@@ -86,7 +105,7 @@ function loadPost(post, showComments = false) {
         } else {
             html+='their';
         }
-        html+='" class="post-more dropdown-trigger material-icons">more_vert</i></div>';
+        html+='" class="post-more dropdownWithoutSelection-trigger material-icons">more_vert</i></div>';
         html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
         if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
         html+= '<div data-postid="'+post.id+'" class="post-content post-text post-interactions">';
@@ -115,7 +134,7 @@ function loadPost(post, showComments = false) {
         lastPostId = post.id;
         //console.log("lastPostId: "+lastPostId);
         
-        $(document).find('.dropdown-trigger').dropdown();
+        $(document).find('.dropdownWithoutSelection-trigger').dropdown();
 }
 
 function like() {

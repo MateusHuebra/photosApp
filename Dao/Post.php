@@ -69,6 +69,14 @@ class Post extends Dao {
         return $post;
     }
 
+    function getPostUserId(int $id) {
+        $query = "SELECT userId
+                FROM post
+                WHERE id = ".$id;
+        $connection = $this->getConnection();
+        return $connection->selectOne($query)['userId'];
+    }
+
     function save(\Model\Post $post) {
         $query = "INSERT INTO post (id, text, picture, userId)
                 VALUES (".$this->getIntOrNullForSQL($post->getId()).", "
@@ -81,5 +89,11 @@ class Post extends Dao {
 		$connection->query($query);
 		//echo $query;
 		//die();
+    }
+
+    function delete(int $postId) {
+        $query = "DELETE FROM post WHERE id = ".$postId;
+        $connection = $this->getConnection();
+        $connection->query($query);
     }
 }

@@ -38,4 +38,11 @@ class Comment extends Dao {
         $connection = $this->getConnection();
 		return $connection->selectAll($query)[0]['count'];
     }
+
+    function deleteAll(int $postId) {
+        $query = "DELETE FROM comment WHERE postId = ".$postId;
+        $connection = $this->getConnection();
+        $connection->query($query);
+    }
+
 }

@@ -62,13 +62,24 @@
 		</div>
 	</div>
 
+	<div id="modalDeletePost" class="modal">
+		<div class="modal-content">
+			<h4>Delete post</h4>
+			<p>Are you sure you want to delete this post?</p>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-close waves-effect waves-white btn-flat">Cancel</a>
+			<a id="modalDeletePostConfirm" class="modal-close waves-effect waves-red btn-flat">Yes</a>
+		</div>
+	</div>
+
 	<i style="visibility: hidden; position: absolute;" class="material-icons">thumb_up</i>
 	<i style="visibility: hidden; position: absolute;" class="material-icons-outlined">thumb_up</i>
 	<textarea id="selection" style="opacity: 0; position: absolute;"></textarea>
 	
 	<ul id='dropdown-post-your' class='dropdown-content'>
 		<li id="more-copy"><span style="color: black;">copy link</span></li>
-		<li id="more-delete"><span style="color: black;">delete</span></li>
+		<li id="more-delete" class="modal-trigger" href="#modalDeletePost"><span style="color: black;">delete</span></li>
 	</ul>
 	<ul id='dropdown-post-their' class='dropdown-content'>
 		<li id="more-copy"><span style="color: black;">copy link</span></li>

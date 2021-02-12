@@ -172,5 +172,21 @@ class Post extends LoggedController {
 		$daoComment->set($_POST['postId'], $_SESSION['user']->getId(), $_POST['text']);
 		
 	}
+
+	function delete() {
+		$daoPost = new \Dao\Post();
+		$postUserId = $daoPost->getPostUserId($_POST['postid']);
+		if ($_SESSION['user']->getId() != $postUserId) {
+			echo "You tried to delete someone else's post";
+			die();
+		}
+
+		$daoLike = new \Dao\Like();
+		$daoComment = new \Dao\Comment();
+		$daoLike->deleteAll($_POST['postid']);
+		$daoComment->deleteAll($_POST['postid']);
+		$daoPost->delete($_POST['postid']);
+
+	}
     
 }
