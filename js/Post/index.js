@@ -1,12 +1,14 @@
 var lastCommentId = null;
 var recentCommentId = null;
 var sending = false;
+var firstTimeLoadingComments = true;
+var commentsLoaded = 0;
 
 $(function() {
 
     loadPost(post, true);
     loadComments();
-
+    
     $(document).on('click', '#comment-load', function() {
         var loadText = $(document).find('#comment-load');
         if(loadText.text()=='loading more comments...') {
@@ -18,9 +20,22 @@ $(function() {
         }
     })
 
+    $('#commentTextarea').on('keypress', function(e) {
+        if(e.key == 'Enter') {
+            e.preventDefault();
+            sendComment();
+        }
+    })
+
+    $('#modalCommentError').modal({
+        onCloseEnd: function() {
+            $('#commentTextarea').trigger('focus');
+        }
+    });
+
 })
 
-function loadRecentComments() {
+function loadRecentComments(highlightLastComment = false) {
     $.ajax({
         url: "/photosApp/post/getPostComments",
         data: {
@@ -29,7 +44,7 @@ function loadRecentComments() {
         },
         method: 'POST'
     }).done(function(comments) {
-        showComments(comments, true);
+        showComments(comments, true, highlightLastComment);
     })
 }
 
@@ -42,8 +57,13 @@ function loadComments() {
         },
         method: 'POST'
     }).done(function(comments) {
-        showComments(comments);
-        $(document).find('#comment-load').text('see more comments');
+        if(comments) {
+            showComments(comments);
+            $(document).find('#comment-load').text('see more comments');
+        } else {
+            $(document).find('#comment-load').remove();
+        }
+        countComments();
     })
 
     $(document).on('click', '#sendComment', function() {
@@ -54,7 +74,7 @@ function loadComments() {
     })
 }
 
-function showComments(comments, recent = false) {
+function showComments(comments, recent = false, highlightLastComment = false) {
     if(comments!=false) {
         var lastComment = $('.post-seeComments').children().last();
         comments.forEach(comment => {
@@ -62,6 +82,7 @@ function showComments(comments, recent = false) {
             html+= '<span><a class="comment-username" href="/photosApp/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
             html+= '<span> '+comment.text+'</span>';
             html+= '</div>';
+            commentsLoaded++;
             if(recent==false) {
                 $('.comment-load').after(html)
             } else {
@@ -76,6 +97,9 @@ function showComments(comments, recent = false) {
         }
         console.log('last: '+lastCommentId+' - recent: '+recentCommentId);
     }
+    if(highlightLastComment) {
+        $('.post-seeComments').children().last().addClass('highlight');
+    }
     countComments();
 }
 
@@ -88,14 +112,18 @@ function sendComment() {
         },
         method: 'POST'
     }).done(function(result) {
+        loadRecentComments(true);
+        
         sending = false;
         if(result!=false) {
             M.Modal.getInstance($('#modalCommentError')).open();
             $(document).find('#modalCommentError').find('.modal-content').text(result);
         } else {
             $('#commentTextarea').val('');
+            $('#commentTextarea').trigger('blur');
+            $('#commentTextarea').parent().find('label').removeClass('active');
+            $('#page').animate({ scrollTop: $('#page').prop('scrollHeight')}, 500);
         }
-        loadRecentComments();
     })
 }
 
@@ -108,9 +136,14 @@ function countComments() {
         method: 'POST'
     }).done(function(count){
         if(count==1) {
-            $(document).find('.post-comments').html('<a href="#" class="color-black">1 comment</a>');
+            $(document).find('.post-comments').find('a').text('1 comment');
         } else {
-            $(document).find('.post-comments').html('<a href="#" class="color-black">'+count+' comments</a>');
+            $(document).find('.post-comments').find('a').text(''+count+' comments');
+        }
+        
+        console.log(commentsLoaded+' of '+count+' comments loaded');
+        if(commentsLoaded == count) {   
+            $(document).find('#comment-load').remove();
         }
     })
 }

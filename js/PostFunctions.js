@@ -21,6 +21,9 @@ $(function() {
         likescounter = $(this).parent().find('.post-likescounter');
         postId = $(this).parent().data('postid');
         like();
+        if(typeof loadRecentComments === 'function') {
+            loadRecentComments();
+        }
     })
 
     $(document).on('click', '.like-trigger', function () {
@@ -29,6 +32,9 @@ $(function() {
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
         like();
+        if(typeof loadRecentComments === 'function') {
+            loadRecentComments();
+        }
     })
 
     $(window).on('scroll', function() {
@@ -73,6 +79,7 @@ function loadPost(post, showComments = false) {
         $('#posts').append(
             html
         );
+        postId = post.id;
         changeLikeAndCommentText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'), post.comments, $(document).find(`[data-postid='${post['id']}']`).find('.post-comments').find('a'));
         lastPostId = post.id;
         //console.log("lastPostId: "+lastPostId);
@@ -120,8 +127,8 @@ function seeLikes() {
 }
 
 function changeLikeAndCommentText(likes, likesObject, comments, commentsObject) {
-    console.log("likes: "+ likes);
-    console.log("comments: "+ comments);
+    console.log("likes for id"+postId+": "+ likes);
+    console.log("comments for id"+postId+": "+ comments);
 
     if (likes == 1) {
         likesObject.text('like');
@@ -134,4 +141,5 @@ function changeLikeAndCommentText(likes, likesObject, comments, commentsObject) 
     } else {
         commentsObject.text(comments+' comments');
     }
+    
 }
