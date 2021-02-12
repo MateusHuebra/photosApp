@@ -4,6 +4,7 @@ var postId;
 var url;
 var lastPostId;
 var scrollDetected = false;
+var moreSelectedPost;
 
 $(function() {
     $('#posts').html('');
@@ -50,6 +51,22 @@ $(function() {
         }
     })
 
+    $(document).on('click', '.dropdown-trigger', function() {
+        moreSelectedPost = $(this).parent().parent().find('.post-interactions').data('postid');
+    })
+
+    $(document).on('click', '#more-copy', function() {
+        var query = ".post-interactions[data-postid='"+moreSelectedPost+"']";
+        var link = $(document).find(query).find('.post-comments').find('a').attr('href');
+        console.log(link);
+        $('#selection').val(link);
+        $('#selection').trigger('select');
+        document.execCommand('copy');
+        $('#selection').trigger('blur');
+        M.Toast.dismissAll();
+        M.toast({html: "copied to the clipboard", classes: "rounded"});
+    })
+
 })
 
 function loadPosts(posts) {
@@ -61,7 +78,15 @@ function loadPosts(posts) {
 
 function loadPost(post, showComments = false) {
     var html = '<div class="row"> <div class="col s12 no-padding m4 offset-m4"> <div class="card">';
-        html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post"> <span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span> </div>';
+        html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post">';
+        html+= '<span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span>';
+        html+= '<i data-target="dropdown-post-';
+        if(post['user'].username == user.username) {
+            html+='your';
+        } else {
+            html+='their';
+        }
+        html+='" class="post-more dropdown-trigger material-icons">more_vert</i></div>';
         html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
         if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
         html+= '<div data-postid="'+post.id+'" class="post-content post-text post-interactions">';
@@ -89,6 +114,8 @@ function loadPost(post, showComments = false) {
         changeLikeAndCommentText(post.likes, $(document).find(`[data-postid='${post['id']}']`).find('.modal-trigger'), post.comments, $(document).find(`[data-postid='${post['id']}']`).find('.post-comments').find('a'));
         lastPostId = post.id;
         //console.log("lastPostId: "+lastPostId);
+        
+        $(document).find('.dropdown-trigger').dropdown();
 }
 
 function like() {

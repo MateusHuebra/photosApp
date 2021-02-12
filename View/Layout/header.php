@@ -64,10 +64,19 @@
 
 	<i style="visibility: hidden; position: absolute;" class="material-icons">thumb_up</i>
 	<i style="visibility: hidden; position: absolute;" class="material-icons-outlined">thumb_up</i>
+	<textarea id="selection" style="opacity: 0; position: absolute;"></textarea>
 	
+	<ul id='dropdown-post-your' class='dropdown-content'>
+		<li id="more-copy"><span style="color: black;">copy link</span></li>
+		<li id="more-delete"><span style="color: black;">delete</span></li>
+	</ul>
+	<ul id='dropdown-post-their' class='dropdown-content'>
+		<li id="more-copy"><span style="color: black;">copy link</span></li>
+	</ul>
+
 	<script type="text/javascript">
-	<?php
-		echo 'var user = {id:'.$_SESSION['user']->getId().', username:"'.$_SESSION['user']->getUsername().'", photo:"'.$_SESSION['user']->getProfilePicture().'"};';
-	?>
+		<?php
+		echo 'var user = {id:' . $_SESSION['user']->getId() . ', username:"' . $_SESSION['user']->getUsername() . '", photo:"' . $_SESSION['user']->getProfilePicture() . '"};';
+		?>
 	</script>
 	<script type="text/javascript" src="/photosApp/js/Layout/Header.js"></script>

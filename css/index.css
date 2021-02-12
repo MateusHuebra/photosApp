@@ -1,7 +1,3 @@
-body {
-    
-}
-
 .content-profile {
     margin-top: 0px;
 }
@@ -105,6 +101,7 @@ body {
 .page-forcomments {
     max-height: calc(100% - 110px);
     max-width: 100%;
+    width: 100%;
     position: absolute;
     overflow-y: auto;
     padding-bottom: 10px;
@@ -117,6 +114,12 @@ body {
     padding-top: 7px;
     padding-bottom: 7px;
     padding-left: 7px;
+}
+
+.post-more {
+    right: 13px;
+    top: 11px;
+    position: absolute;
 }
 
 .circle-mobile {
