@@ -55,5 +55,5 @@
 	?>
 </script>
 
-<script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>
-<script type="text/javascript" src="/photosApp/js/Post/index.js"></script>
+<script type="text/javascript" src="/js/PostFunctions.js"></script>
+<script type="text/javascript" src="/js/Post/index.js"></script>

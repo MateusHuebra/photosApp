@@ -1,7 +1,7 @@
 {
     "name": "photosApp",
     "short_name": "photosApp",
-    "start_url": "/photosApp/home",
+    "start_url": "/home",
     "icons": [
 
     ],

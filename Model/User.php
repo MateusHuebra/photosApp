@@ -65,17 +65,17 @@ class User {
 
 	function getProfilePicture() {
 		if($this->getPhoto()){
-			return '/photosApp/images/database/'.$this->getId().'/'.$this->getPhoto();
+			return '/images/database/'.$this->getId().'/'.$this->getPhoto();
 		} else {
-			return '/photosApp/images/profile.png';
+			return '/images/profile.png';
 		}
 	}
 
 	function getCoverPicture() {
 		if($this->getCover()){
-			return '/photosApp/images/database/'.$this->getId().'/'.$this->getCover();
+			return '/images/database/'.$this->getId().'/'.$this->getCover();
 		} else {
-			return '/photosApp/images/cover.png';
+			return '/images/cover.png';
 		}
 	}
 

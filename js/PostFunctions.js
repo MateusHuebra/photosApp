@@ -11,11 +11,11 @@ $(function() {
 
     $(document).on('click', '.post-like', function () {
         if ($(this).hasClass('material-icons')) {
-            url = "/photosApp/post/dislike";
+            url = "/post/dislike";
             $(this).addClass('material-icons-outlined');
             $(this).removeClass('material-icons');
         } else {
-            url = "/photosApp/post/like";
+            url = "/post/like";
             $(this).addClass('material-icons');
             $(this).removeClass('material-icons-outlined');
         }
@@ -29,7 +29,7 @@ $(function() {
     })
 
     $(document).on('click', '.like-trigger', function () {
-        url = "/photosApp/post/likesCount";
+        url = "/post/likesCount";
         commentscounter = $(this).parent().parent().find('.post-comments').find('a');
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
@@ -71,7 +71,7 @@ $(function() {
         var postToBeDeleted = moreSelectedPost;
         console.log('trying to delete post id'+postToBeDeleted);
         $.ajax({
-            url: '/photosApp/post/delete',
+            url: '/post/delete',
             data: {
                 postid: postToBeDeleted
             },
@@ -98,7 +98,7 @@ function loadPosts(posts) {
 function loadPost(post, showComments = false) {
     var html = '<div class="row"> <div class="col s12 no-padding m4 offset-m4"> <div class="card">';
         html+= '<div class="post-content"> <img src="'+post['user'].photo+'" alt="" class="circle-post">';
-        html+= '<span><a class="post-username" href="/photosApp/'+post['user'].username+'">'+post['user'].username+'</a></span>';
+        html+= '<span><a class="post-username" href="/'+post['user'].username+'">'+post['user'].username+'</a></span>';
         html+= '<i data-target="dropdown-post-';
         if(post['user'].username == user.username) {
             html+='your';
@@ -106,7 +106,7 @@ function loadPost(post, showComments = false) {
             html+='their';
         }
         html+='" class="post-more dropdownWithoutSelection-trigger material-icons">more_vert</i></div>';
-        html+= '<div class="card-image"> <img src="/photosApp/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
+        html+= '<div class="card-image"> <img src="/images/database/'+post['user'].id+'/'+post.picture+'"> </div>';
         if(post.text!='') { html+='<div class="post-content post-text"> '+post.text+' </div>'; }
         html+= '<div data-postid="'+post.id+'" class="post-content post-text post-interactions">';
         if(post.liked) {
@@ -116,9 +116,9 @@ function loadPost(post, showComments = false) {
         }
         html+='<span class="post-likescounter">'+post.likes+' <a href="#modalLikes" class="color-black modal-trigger like-trigger">likes</a></span>';
         if(post.comments==1) {
-            html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">1 comments</a></span>';
+            html+='<span class="post-comments"><a href="/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">1 comments</a></span>';
         } else {
-            html+='<span class="post-comments"><a href="/photosApp/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">'+post.comments+' comments</a></span>';
+            html+='<span class="post-comments"><a href="/post/?pid='+post.id+'&pic='+post.picture.split('.')[0]+'" class="color-black">'+post.comments+' comments</a></span>';
         }
         html+='<span class="post-createdAt">'+post.createdAt+'</span> </div>'; 
         if(showComments) {
@@ -154,7 +154,7 @@ function like() {
 
 function seeLikes() {
     $.ajax({
-        url: '/photosApp/Post/seeLikes',
+        url: '/Post/seeLikes',
         data: {
             postId: postId
         },
@@ -165,11 +165,11 @@ function seeLikes() {
         likes.forEach(like => {
             likesHtml += '<li class="collection-item post-username">';
             if (like.photo == null) {
-                likesHtml += '<img src="/photosApp/images/profile.png" alt="" class="circle-post">';
+                likesHtml += '<img src="/images/profile.png" alt="" class="circle-post">';
             } else {
-                likesHtml += '<img src="/photosApp/images/database/' + like.id + '/' + like.photo + '" alt="" class="circle-post">';
+                likesHtml += '<img src="/images/database/' + like.id + '/' + like.photo + '" alt="" class="circle-post">';
             }
-            likesHtml += ' <a class="color-black" href="/photosApp/' + like.username + '">' + like.username + '</li>';
+            likesHtml += ' <a class="color-black" href="/' + like.username + '">' + like.username + '</li>';
         });
         $('.likeslist').html(' ');
         $('.likeslist').append(

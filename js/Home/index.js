@@ -8,7 +8,7 @@ $(function() {
 
 function loadPostsAjax(lastPostId = 0) {
     $.ajax({
-        url: "/photosApp/post/getPosts",
+        url: "/post/getPosts",
         data: {
             lastPostId: lastPostId
         },

@@ -10,7 +10,7 @@ abstract class Controller {
 	}
 
 	protected function redirect(string $url, string $errorMessage = null, string $info = null) {
-		$location = 'Location: /photosapp/'.$url;
+		$location = 'Location: /'.$url;
 		if($errorMessage) {
 			$location.= '/?error='.base64_encode($errorMessage);
 			if($info) {

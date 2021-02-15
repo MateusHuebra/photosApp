@@ -37,7 +37,7 @@ $(function() {
 
 function loadRecentComments(highlightLastComment = false) {
     $.ajax({
-        url: "/photosApp/post/getPostComments",
+        url: "/post/getPostComments",
         data: {
             postId: post.id,
             recentCommentId: recentCommentId
@@ -50,7 +50,7 @@ function loadRecentComments(highlightLastComment = false) {
 
 function loadComments() {
     $.ajax({
-        url: "/photosApp/post/getPostComments",
+        url: "/post/getPostComments",
         data: {
             postId: post.id,
             lastCommentId: lastCommentId
@@ -78,7 +78,7 @@ function showComments(comments, recent = false, highlightLastComment = false) {
         var lastComment = $('.post-seeComments').children().last();
         comments.forEach(comment => {
             var html= '<div class="post-seeComment">';
-            html+= '<span><a class="comment-username" href="/photosApp/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
+            html+= '<span><a class="comment-username" href="/'+comment['user'].username+'">'+comment['user'].username+'</a></span>';
             html+= '<span> '+comment.text+'</span>';
             html+= '</div>';
             commentsLoaded++;
@@ -104,7 +104,7 @@ function showComments(comments, recent = false, highlightLastComment = false) {
 
 function sendComment() {
     $.ajax({
-        url: "/photosApp/post/sendComment",
+        url: "/post/sendComment",
         data: {
             postId: post.id,
             text: $('#commentTextarea').val()
@@ -128,7 +128,7 @@ function sendComment() {
 
 function countComments() {
     $.ajax({
-        url: "/photosApp/post/getCountComments",
+        url: "/post/getCountComments",
         data: {
             postId: post.id
         },

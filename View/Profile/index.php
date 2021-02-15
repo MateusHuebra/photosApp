@@ -43,7 +43,7 @@
     </div>
 
     <div id="modalProfilePicture" class="modal modal-fixed-footer">
-        <form method="post" action="/photosApp/profile/uploadProfilePicture" enctype="multipart/form-data">
+        <form method="post" action="/profile/uploadProfilePicture" enctype="multipart/form-data">
             <div class="modal-content" style="overflow-x: hidden;">
 
                 <div class="file-field input-field">
@@ -67,7 +67,7 @@
     </div>
 
     <div class="fixed-action-btn">
-        <a href="/photosApp/create" class="btn-floating btn-large blue darken-4">
+        <a href="/create" class="btn-floating btn-large blue darken-4">
             <i class="large material-icons">add_photo_alternate</i>
         </a>
     </div>
@@ -82,6 +82,6 @@
     }
     ?>
 </script>
-<script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>
-<script type="text/javascript" src="/photosApp/js/CreateButton.js"></script>
-<script type="text/javascript" src="/photosApp/js/Profile/index.js"></script>
+<script type="text/javascript" src="/js/PostFunctions.js"></script>
+<script type="text/javascript" src="/js/CreateButton.js"></script>
+<script type="text/javascript" src="/js/Profile/index.js"></script>

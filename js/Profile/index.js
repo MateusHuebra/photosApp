@@ -45,7 +45,7 @@ $(function() {
 
 function loadPostsAjax(lastPostId = 0) {
     $.ajax({
-        url: "/photosApp/post/getPostsById",
+        url: "/post/getPostsById",
         data: {
             username: profileUsername,
             lastPostId: lastPostId

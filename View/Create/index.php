@@ -13,7 +13,7 @@
 </div>
 
 <div id="page" class="row content-create hidden">
-    <form class="col s12 l4 offset-l4" method="post" action="/photosApp/create/post" enctype="multipart/form-data">
+    <form class="col s12 l4 offset-l4" method="post" action="/create/post" enctype="multipart/form-data">
         <img id="pictureUploadPreview" class="sidenav-photo" src="" style="margin-top: 10px;">
         <div class="file-field input-field">
             <div class="btn blue darken-4">
@@ -47,4 +47,4 @@
     </form>
 </div>
 
-<script type="text/javascript" src="/photosApp/js/Create/index.js"></script>
+<script type="text/javascript" src="/js/Create/index.js"></script>

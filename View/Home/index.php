@@ -28,12 +28,12 @@
   </div>
 
   <div class="fixed-action-btn">
-    <a href="/photosApp/create" class="btn-floating btn-large blue darken-4">
+    <a href="/create" class="btn-floating btn-large blue darken-4">
       <i class="large material-icons">add_photo_alternate</i>
     </a>
   </div>
 
 </div>
-<script type="text/javascript" src="/photosApp/js/PostFunctions.js"></script>
-<script type="text/javascript" src="/photosApp/js/CreateButton.js"></script>
-<script type="text/javascript" src="/photosApp/js/Home/index.js"></script>
+<script type="text/javascript" src="/js/PostFunctions.js"></script>
+<script type="text/javascript" src="/js/CreateButton.js"></script>
+<script type="text/javascript" src="/js/Home/index.js"></script>
