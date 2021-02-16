@@ -8,7 +8,7 @@ $(function() {
 
 function loadPostsAjax(lastPostId = 0) {
     $.ajax({
-        url: "/post/getPosts",
+        url: "/post/getPostsFromFollows",
         data: {
             lastPostId: lastPostId
         },

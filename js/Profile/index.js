@@ -41,6 +41,39 @@ $(function() {
         }
     })
 
+    if(profileId == user['id']) {
+        $('.profile-follow').remove();
+    } else {
+        $.ajax({
+            url: 'profile/isFollowing',
+            data: {
+                followsId: profileId
+            },
+            method: 'POST'
+        }).done(function(response) {
+            if(response) {
+                $('.profile-follow').find('i').text('person_add_alt_1');
+                $('.profile-follow').find('span').find('span').text('following');
+            } else {
+                $('.profile-follow').find('i').text('person_add_alt');
+                $('.profile-follow').find('span').find('span').text('follow');
+            }
+        })
+    }
+
+    $('.profile-follow').on('click', function() {
+        if ($(this).find('i').text() == 'person_add_alt') {
+            $(this).find('i').text('person_add_alt_1');
+            $(this).find('span').find('span').text('following');
+            follow('follow');
+        } else {
+            url = "/profile/unfollow";
+            $(this).find('i').text('person_add_alt');
+            $(this).find('span').find('span').text('follow');
+            follow('unfollow');
+        }
+    })
+
 })
 
 function loadPostsAjax(lastPostId = 0) {
@@ -56,6 +89,18 @@ function loadPostsAjax(lastPostId = 0) {
         console.log("lastPostId: "+lastPostId);
         console.log(posts);
         loadPosts(posts);
+
+    })
+}
+
+function follow(url) {
+    $.ajax({
+        url: "profile/"+url,
+        data: {
+            followsId: profileId
+        },
+        method: 'POST'
+    }).done(function() {
 
     })
 }

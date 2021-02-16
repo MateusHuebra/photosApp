@@ -44,9 +44,10 @@ $(function() {
         var scrollPosition = $(window).scrollTop();
         //var scrollMax = $('body').prop('scrollHeight') - $(window).height() + 50;
         var scrollMax = $(document).height() - window.visualViewport.height - 10;
-        console.log('scrollPosition: '+scrollPosition+' - scrollMax:'+scrollMax);
+        
         //$('.brand-logo').text('scrollPosition: '+scrollPosition+' - scrollMax:'+scrollMax);
         if(scrollPosition >= scrollMax && !scrollDetected) {
+            console.log('scrollPosition: '+scrollPosition+' - scrollMax:'+scrollMax);
             scrollDetected = true;
             loadPostsAjax(lastPostId);
         }

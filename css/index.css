@@ -168,6 +168,20 @@ body {
     position: absolute;
 }
 
+#follow {
+    vertical-align: bottom;
+}
+
+.profile-follow {
+    position: absolute;
+    background-color: white;
+    right: 3px;
+    bottom: 3px;
+    padding: 0px 4px 0px 4px;
+    border-radius: 10%;
+    border: black 1px solid;
+}
+
 .profile-picture {
     /*max-height: 70%;
     max-width: 25%;

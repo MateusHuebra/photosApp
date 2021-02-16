@@ -30,4 +30,20 @@ class Profile extends LoggedController {
         $this->redirect($_SESSION['user']->getUsername(), 'Profile picture changed!');
     }
 
+    function follow() {
+        $daoFollow = new \Dao\Follow();
+        $daoFollow->set($_SESSION['user']->getId(), $_POST['followsId']);
+    }
+
+    function unfollow() {
+        $daoFollow = new \Dao\Follow();
+        $daoFollow->unset($_SESSION['user']->getId(), $_POST['followsId']);
+    }
+
+    function isFollowing() {
+        $daoFollow = new \Dao\Follow();
+        $response = $daoFollow->getById($_SESSION['user']->getId(), $_POST['followsId']);
+        $this->json($response);
+    }
+
 }

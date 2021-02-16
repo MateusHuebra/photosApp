@@ -22,6 +22,11 @@
                 <span class="profile-username"><?php echo $profileUser->getUsername(); ?></span>
                 <button id="profile-picture" onclick="$('#pictureUpload').trigger('click');" class="color-black btn-floating waves-effect  blue darken-4" style="position: absolute; right: -10px; top: -10px;"><i class="material-icons">edit</i></button>
             </div>
+            <div class="profile-follow">
+                <span>
+                    <i id="follow" class="material-icons">person_add_alt_1</i> <span>loading</span>
+                </span>
+            </div>
         </div>
     </div>
 
@@ -77,6 +82,7 @@
 <script type="text/javascript">
     <?php
     echo 'var profileUsername = "' . $profileUser->getUsername() . '"; ';
+    echo 'var profileId = "' . $profileUser->getId() . '"; ';
     if (!is_null($error)) {
         echo 'M.toast({html: "' . $error . '", classes: "rounded"});';
     }

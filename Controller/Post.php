@@ -56,6 +56,32 @@ class Post extends LoggedController {
 		$this->json($results);
 	}
 
+	function getPostsFromFollows() {
+		$daoPost = new \Dao\Post();
+		$posts = $daoPost->getFromFollows($_POST['lastPostId'], $_SESSION['user']->getId());
+		$results = [];
+		foreach ($posts as $post) {
+			$liked = (new \Dao\Like())->get($post->getId(), $_SESSION['user']->getId());
+			$likes = (new \Dao\Like())->getCount($post->getId());
+			$comments = (new \Dao\Comment())->getCount($post->getId());
+			$results[] = [
+				'id' => $post->getId(),
+				'text' => $post->getText(),
+				'picture' => $post->getPicture(),
+				'createdAt' => $post->getCreatedAt(),
+				'user' => [
+					'id' => $post->getUserId(),
+					'username' => $post->getUser()->getUsername(),
+					'photo' => $post->getUser()->getProfilePicture()
+				],
+				'liked' => $liked,
+				'likes' => $likes,
+				'comments' => $comments
+			];
+		}
+		$this->json($results);
+	}
+
 	function like() {
 		$daoLike = new \Dao\Like();
 		$daoComment = new \Dao\Comment();
