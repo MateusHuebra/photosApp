@@ -5,9 +5,9 @@ spl_autoload_register(function ($class_name) {
 });
 
 $requestUri = explode('/', $_SERVER['REQUEST_URI']);
-$className = 'Controller\\'.ucfirst($requestUri[2]);
-if(isset($requestUri[3]) && !preg_match("/^[?]/", $requestUri[3])) {
-	$methodName = $requestUri[3];
+$className = 'Controller\\'.ucfirst($requestUri[1]);
+if(isset($requestUri[2]) && !preg_match("/^[?]/", $requestUri[2])) {
+	$methodName = $requestUri[2];
 } else {
 	$methodName = 'index';
 }
@@ -15,11 +15,11 @@ if(isset($requestUri[3]) && !preg_match("/^[?]/", $requestUri[3])) {
 $connection = new Dao\Connection();
 
 if(!file_exists(str_replace('\\', '/', $className).'.php') || !in_array($methodName, get_class_methods($className))) {
-	if((new \Dao\User())->checkUsernameExists($requestUri[2])) {
+	if((new \Dao\User())->checkUsernameExists($requestUri[1])) {
 		$className = 'Controller\\Profile';
 		$methodName = 'viewProfile';
 		$controller = new $className();
-		$controller->$methodName($requestUri[2]);
+		$controller->$methodName($requestUri[1]);
 	} else {
 		$className = 'Controller\\PageNotFound';
 		$methodName = 'index';

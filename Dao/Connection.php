@@ -6,7 +6,7 @@ class Connection {
 	private $connection;
 
 	function __construct() {
-		$this->connection = new \PDO('mysql:host=localhost;dbname=photosapp', 'root', null);
+		$this->connection = new \PDO('mysql:host=localhost;dbname=photosapp', 'root', 'Abc_12345');
 	}
 
 	function selectOne(string $query) {
