@@ -20,6 +20,8 @@ if(!file_exists(str_replace('\\', '/', $className).'.php') || !in_array($methodN
 		$methodName = 'viewProfile';
 		$controller = new $className();
 		$controller->$methodName($requestUri[1]);
+	} else if (empty($requestUri[1])) {
+		header('Location: /home');
 	} else {
 		$className = 'Controller\\PageNotFound';
 		$methodName = 'index';
