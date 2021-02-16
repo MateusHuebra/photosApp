@@ -96,4 +96,5 @@ class Post extends Dao {
         $connection = $this->getConnection();
         $connection->query($query);
     }
+
 }

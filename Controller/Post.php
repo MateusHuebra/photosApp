@@ -188,5 +188,29 @@ class Post extends LoggedController {
 		$daoPost->delete($_POST['postid']);
 
 	}
+
+	function getLikesAndCommentsForAllPosts() {
+		$daoLike = new \Dao\Like();
+		$daoComment = new \Dao\Comment();
+		$likes = $daoLike->getFromVariousPosts($_POST['posts']);
+		$comments = $daoComment->getFromVariousPosts($_POST['posts']);
+		
+		foreach($_POST['posts'] as $post) {
+			$array['id'] = $post;
+			if(isset($likes[$post])){
+				$array['likes'] = $likes[$post];
+			} else {
+				$array['likes'] = "0";
+			}
+			if(isset($comments[$post])){
+				$array['comments'] = $comments[$post];
+			} else {
+				$array['comments'] = "0";
+			}
+			
+			$response[] = $array;
+		}
+		$this->json($response);
+	}
     
 }

@@ -5,6 +5,7 @@ var url;
 var lastPostId;
 var scrollDetected = false;
 var moreSelectedPost;
+var timerToQueryLikesAndComments;
 
 $(function() {
     $('#posts').html('');
@@ -85,6 +86,8 @@ $(function() {
             }
         })
     })
+
+    timerToQueryLikesAndComments = setTimeout(queryLikesAndComments, 5000);
 
 })
 
@@ -194,4 +197,42 @@ function changeLikeAndCommentText(likes, likesObject, comments, commentsObject) 
         commentsObject.text(comments+' comments');
     }
     
+}
+
+function queryLikesAndComments() {
+    var posts = new Array();
+    $(document).find('.post-interactions').each(function() {
+        posts.push($(this).data('postid'));
+    })
+    console.log(posts);
+    $.ajax({
+        url: '/post/getLikesAndCommentsForAllPosts',
+        data: {
+            posts: posts
+        },
+        method: 'POST'
+    }).done(function(response) {
+        clearTimeout(timerToQueryLikesAndComments);
+        response.forEach(function(post) {
+            //console.log(post);
+            var likesObject = $(document).find('.post-interactions[data-postid="'+post.id+'"]').find('.post-likescounter');
+            var commentsObject = $(document).find('.post-interactions[data-postid="'+post.id+'"]').find('.post-comments');
+            
+            if (post.likes == 1) {
+                var likes = 'like';
+            } else {
+                var likes = 'likes';
+            }
+        
+            if (post.comments == 1) {
+                var comments = post.comments+' comment';
+            } else {
+                var comments = post.comments+' comments';
+            }
+
+            likesObject.html(post.likes + ' <a href="#modalLikes" class="color-black modal-trigger like-trigger">'+likes+'</a>');
+            commentsObject.find('a').text(comments);
+        })
+        timerToQueryLikesAndComments = setTimeout(queryLikesAndComments, 5000);
+    })
 }

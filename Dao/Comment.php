@@ -45,4 +45,28 @@ class Comment extends Dao {
         $connection->query($query);
     }
 
+    function getFromVariousPosts($postsId) {
+        $query = "SELECT postId, count(postId) as comments
+                FROM comment
+                WHERE ";
+        $first = true;
+        foreach ($postsId as $postId) {
+            if(!$first) {
+                $query .= "or ";
+            } else {
+                $first = false;
+            }
+            $query .= "postId = ".$postId." ";
+        }
+        $query .=  "GROUP BY postId";
+
+        $connection = $this->getConnection();
+        $results = $connection->selectAll($query);
+        //var_dump($results);
+        foreach ($results as $result) {
+            $comments[$result['postId']] = $result['comments'];
+        }
+        return $comments;
+    }
+
 }
