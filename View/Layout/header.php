@@ -31,7 +31,9 @@
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
+				<a id="nav-search-mobile" href="/search"><i class="material-icons" style="right: 20px; position: absolute;">search</i></a>
 				<ul class="right hide-on-med-and-down">
+					<li><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
 					<li><a href="/home">Home</a></li>
 					<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>

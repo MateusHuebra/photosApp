@@ -73,4 +73,24 @@ class User extends Dao {
 		$connection->query($query);
 	}
 
+	function search(string $search) {
+		$query = "SELECT * FROM user
+		WHERE username LIKE '%{$search}%' or name LIKE '%{$search}%'
+		ORDER BY username limit 5";
+		$connection = $this->getConnection();
+		$results = $connection->selectAll($query);
+		foreach ($results as $result) {
+            $users[] = new \Model\User(
+				$result['id'],
+				$result['username'],
+				$result['name'],
+				$result['email'],
+				null,
+				$result['photo'],
+				null);
+        }
+		//echo $query;
+		return $users;
+	}
+
 }
