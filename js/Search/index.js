@@ -1,6 +1,7 @@
 $(function() {
     $('#nav-search-mobile').remove();
     $('#nav-search').remove();
+    $('#search').trigger('focus');
     
     $('#clear').on('click', function() {
         $('#search').val('');

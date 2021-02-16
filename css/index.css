@@ -172,7 +172,21 @@ body {
     vertical-align: bottom;
 }
 
+#edit {
+    vertical-align: bottom;
+}
+
 .profile-follow {
+    position: absolute;
+    background-color: white;
+    right: 3px;
+    bottom: 3px;
+    padding: 0px 4px 0px 4px;
+    border-radius: 10%;
+    border: black 1px solid;
+}
+
+.profile-edit {
     position: absolute;
     background-color: white;
     right: 3px;

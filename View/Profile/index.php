@@ -27,6 +27,11 @@
                     <i id="follow" class="material-icons">person_add_alt_1</i> <span>loading</span>
                 </span>
             </div>
+            <div class="profile-edit">
+                <span>
+                    <i id="edit" class="material-icons">edit</i> <span>edit</span>
+                </span>
+            </div>
         </div>
     </div>
 

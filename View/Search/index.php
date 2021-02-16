@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper indigo">
+    <div class="nav-wrapper indigo darken-2">
 
         <div class="input-field">
           <input id="search" type="search" autocomplete="off" required>

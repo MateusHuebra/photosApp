@@ -34,6 +34,18 @@
   </div>
 
 </div>
+
+<div id="modalNoFollows" class="modal">
+		<div class="modal-content">
+			<h5>No posts to show</h5>
+			<p>Search for people to follow</a></p>
+		</div>
+		<div class="modal-footer">
+			<a class="modal-close waves-effect waves-white btn-flat">Cancel</a>
+			<a href="/search" class="waves-effect waves-white btn-flat"><i class="material-icons left">search</i>search</a>
+		</div>
+	</div>
+
 <script type="text/javascript" src="/js/PostFunctions.js"></script>
 <script type="text/javascript" src="/js/CreateButton.js"></script>
 <script type="text/javascript" src="/js/Home/index.js"></script>

@@ -44,6 +44,7 @@ $(function() {
     if(profileId == user['id']) {
         $('.profile-follow').remove();
     } else {
+        $('.profile-edit').remove();
         $.ajax({
             url: 'profile/isFollowing',
             data: {

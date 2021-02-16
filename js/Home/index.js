@@ -1,3 +1,5 @@
+var firstLoadOfPosts = true;
+
 $(function() {
     
     loadPostsAjax();
@@ -18,6 +20,12 @@ function loadPostsAjax(lastPostId = 0) {
         console.log("lastPostId: "+lastPostId);
         console.log(posts);
         loadPosts(posts);
+        if(firstLoadOfPosts) {
+            firstLoadOfPosts=false;
+            if(posts == false) {
+                M.Modal.getInstance($('#modalNoFollows')).open();
+            }
+        }
 
     })
 }

@@ -75,7 +75,7 @@ class User extends Dao {
 
 	function search(string $search) {
 		$query = "SELECT * FROM user
-		WHERE username LIKE '%{$search}%' or name LIKE '%{$search}%'
+		WHERE username LIKE '{$search}%' or name LIKE '{$search}%'
 		ORDER BY username limit 5";
 		$connection = $this->getConnection();
 		$results = $connection->selectAll($query);
