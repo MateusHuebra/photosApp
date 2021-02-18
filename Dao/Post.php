@@ -37,7 +37,7 @@ class Post extends Dao {
         if($lastPostId != 0) {
             $query .= " and id < {$lastPostId}";
         }
-        $query .= " ORDER BY id desc limit ".Post::postsLoadedAtATime;
+        $query .= " GROUP BY id ORDER BY id desc limit ".Post::postsLoadedAtATime;
         //echo $query;
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);

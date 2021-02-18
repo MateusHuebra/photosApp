@@ -11,7 +11,9 @@ class Like extends Dao {
     }
 
     function getLikes(int $postId) {
-        $query = "SELECT id, username, photo FROM `like` JOIN user on `like`.userId = user.id WHERE postId = ".$postId;
+        $query = "SELECT id, username, photo FROM `like` JOIN user on `like`.userId = user.id
+        WHERE postId = ".$postId."
+        ORDER BY (username = '".$_SESSION['user']->getUsername()."') desc, username asc";
         $connection = $this->getConnection();
 		return $connection->selectAll($query);
     }
