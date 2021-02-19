@@ -30,14 +30,14 @@ class Post extends Dao {
     }
 
     function getFromFollows(int $lastPostId = 0, int $userId) : array {
-        $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, post.userId
+        $query = "SELECT distinct id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, post.userId
                 FROM post LEFT JOIN follow on post.userId = follow.followsId
                 WHERE (follow.userId = ".$userId." or post.userId = ".$_SESSION['user']->getId().")";
 
         if($lastPostId != 0) {
             $query .= " and id < {$lastPostId}";
         }
-        $query .= " GROUP BY id ORDER BY id desc limit ".Post::postsLoadedAtATime;
+        $query .= " ORDER BY id desc limit ".Post::postsLoadedAtATime;
         //echo $query;
         $connection = $this->getConnection();
         $results = $connection->selectAll($query);
