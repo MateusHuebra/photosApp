@@ -3,7 +3,7 @@
     <form class="col s12 l4 offset-l4" method="post" action="/authentication/signUpNewAccount">
       <div class="row">
         <div class="input-field col s10 offset-s1">
-          <input name="username" id="username" type="text" class="validate" required="true" value="<?php echo $info;  ?>" >
+          <input name="username" id="username" type="text" class="validate" required="true" value="<?php echo $info2;  ?>" >
           <label for="username">Username</label>
         </div>
       </div>

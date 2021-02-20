@@ -33,11 +33,11 @@
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
 				<a id="nav-search-mobile" href="/search"><i class="material-icons" style="right: 20px; position: absolute;">search</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
 					<li><a href="/home">Home</a></li>
 					<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>
 					<li><a class="modal-trigger" href="#modalLogout">Logout</a></li>
+					<li style="width: 47px;"></li>
 				</ul>
 			</div>
 		</nav>
@@ -77,7 +77,7 @@
 
 	<i style="visibility: hidden; position: absolute;" class="material-icons">thumb_up</i>
 	<i style="visibility: hidden; position: absolute;" class="material-icons-outlined">thumb_up</i>
-	<textarea id="selection" style="opacity: 0; position: absolute;"></textarea>
+	<textarea id="selection" style="opacity: 0; position: absolute; top: -150px;"></textarea>
 	
 	<ul id='dropdown-post-your' class='dropdown-content'>
 		<li id="more-copy"><span style="color: black;">copy link</span></li>

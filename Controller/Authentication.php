@@ -20,7 +20,8 @@ class Authentication extends Controller {
 		$this->view('Authentication/header');
 		$this->view('Authentication/signUp', [
 			'error' => $this->showErrorMessage(),
-			'info' => $this->showInfo()
+			'info' => $this->showInfo(),
+			'info2' => $this->showInfo2()
 		]);
 		$this->view('Authentication/footer');
 	}
@@ -41,12 +42,15 @@ class Authentication extends Controller {
 
 	function signUpNewAccount() {
 		try {
+			(new \Service\Authentication())->validateUsername($_POST['username']);
 			(new \Service\Authentication())->validateEmail($_POST['email']);
 			(new \Service\Authentication())->validatePassword($_POST['password']);
+		} catch(\Exception\InvalidUsername $exception) {
+			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email'], $_POST['username']);
 		} catch(\Exception\InvalidEmail $exception) {
-			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
+			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email'], $_POST['username']);
 		} catch(\Exception\InvalidPassword $exception) {
-			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email']);
+			$this->redirect('authentication/signUp', $exception->getMessage(), $_POST['email'], $_POST['username']);
 		} catch(\Exception $exception) {
 			$this->redirect('authentication/signUp');
 		}

@@ -22,6 +22,33 @@ class Authentication {
 		session_destroy();
 	}
 
+	function validateUsername(string $username) {
+		$reservedWords = [
+			'authentication',
+			'controller',
+			'create',
+			'home',
+			'loggedcontroller',
+			'pagenotfound',
+			'post',
+			'profile',
+			'search'
+		];
+		if(empty($username)) {
+			throw new \Exception\InvalidUsername("Username is empty");
+		} else if (strlen($username) > 16) {
+			throw new \Exception\InvalidUsername("Username is too long / max: 16 characters");
+		} else if (!preg_match("/^[A-Za-z0-9_]{1,16}$/", $username)) {
+			throw new \Exception\InvalidUsername("Username cannot have special characters / just letters, numbers and underscore");
+		} else if (!preg_match("/^[A-Za-z]{1}/", $username)) {
+			throw new \Exception\InvalidUsername("Username must begins with a letter");
+		} else if (in_array(strtolower($username), $reservedWords)) {
+			throw new \Exception\InvalidUsername($username." is a reserved word");
+		} else if ((new \Dao\User())->checkUsernameExists($username)) {
+			throw new \Exception\InvalidUsername("Username already being used");
+		}
+	}
+
 	function validateEmail(string $email) {
 		if(empty($email)) {
 			throw new \Exception\InvalidEmail("Email is empty");
