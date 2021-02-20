@@ -47,6 +47,18 @@ class User extends Dao {
 		return $connection->selectOne($query) != false;
 	}
 
+	function updateInfo(\Model\User $user) {
+		$query = 'UPDATE user SET username = "'.$user->getUsername().'",
+					email = "'.$user->getEmail().'"
+					WHERE id = '.$user->getId();
+		$connection = $this->getConnection();
+		$connection->query($query);
+
+		$query = 'SELECT * FROM user WHERE id = '.$user->getId();
+		$result = $connection->selectOne($query);
+		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo'], $result['cover']);
+	}
+
 	function save(\Model\User $user) {
 		$query = "INSERT INTO user (id, username, name, email, pass)
 					VALUES (".$this->getIntOrNullForSQL($user->getId()).", "

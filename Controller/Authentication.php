@@ -61,4 +61,23 @@ class Authentication extends Controller {
 		$this->redirect('authentication/login');
 	}
 
+	function updateInfo() {
+		try {
+			(new \Service\Authentication())->validateUsername($_POST['username']);
+			(new \Service\Authentication())->validateEmail($_POST['email']);
+		} catch(\Exception\InvalidUsername $exception) {
+			$this->redirect('profile/edit', $exception->getMessage(), $_POST['email'], $_POST['username']);
+		} catch(\Exception\InvalidEmail $exception) {
+			$this->redirect('profile/edit', $exception->getMessage(), $_POST['email'], $_POST['username']);
+		} catch(\Exception $exception) {
+			$this->redirect('profile/edit');
+		}
+
+		$daoUser = new \Dao\User();
+		$modelUser = new \Model\User($_SESSION['user']->getId(), $_POST['username'], null, $_POST['email']);
+		$user = $daoUser->updateInfo($modelUser);
+		(new \Service\Authentication())->login($user);
+		$this->redirect('profile/edit', 'info updated');
+	}
+
 }

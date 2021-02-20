@@ -14,6 +14,12 @@ class Profile extends LoggedController {
         ]);
     }
 
+    function edit() {
+        $this->view('Profile/edit', [
+            'error' => $this->showErrorMessage()
+        ]);
+    }
+
     function uploadProfilePicture() {
         try {
             $fileName = $this->uploadPicture("database/".$_SESSION['user']->getId(), 'profile', true, $_SESSION['user']->getPhoto());

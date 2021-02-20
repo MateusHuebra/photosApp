@@ -45,7 +45,11 @@ class Authentication {
 		} else if (in_array(strtolower($username), $reservedWords)) {
 			throw new \Exception\InvalidUsername($username." is a reserved word");
 		} else if ((new \Dao\User())->checkUsernameExists($username)) {
-			throw new \Exception\InvalidUsername("Username already being used");
+			if(session_id()!='' && strtolower($_SESSION['user']->getUsername()) == strtolower($username)) {
+				//using the same username
+			} else {
+				throw new \Exception\InvalidUsername("Username already being used");
+			}
 		}
 	}
 
@@ -60,7 +64,12 @@ class Authentication {
 		} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			throw new \Exception\InvalidEmail("It must be an email");
 		} else if ((new \Dao\User())->checkEmailExists($email)) {
-			throw new \Exception\InvalidEmail("Email already being used");
+			if(session_id()!='' && strtolower($_SESSION['user']->getEmail()) == strtolower($email)) {
+				//using the same email
+			} else {
+				throw new \Exception\InvalidEmail("Email already being used");
+			}
+			
 		}
 	}
 
