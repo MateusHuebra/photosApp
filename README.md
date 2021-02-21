@@ -13,5 +13,5 @@ O arquivo do banco de dados, denominado **database.mwb**, está localizado na pa
 The database file, called **database.mwb**, is located in the root folder.
 
 ### Conecte o banco de dados / Connect the database
-Vá para **Dao/Connection.php** na linha 9, para completar os dados do seu banco de dados.
-Go to **Dao/Connection.php** on line 9, to complete the data of your database.
+Vá para **settings.json** para configurar os dados do seu banco de dados.
+Go to **settings.json** to set the info for your database.

@@ -59,7 +59,7 @@ $(function() {
 
     $(document).on('click', '#more-copy', function() {
         var query = ".post-interactions[data-postid='"+moreSelectedPost+"']";
-        var link = 'http://192.168.1.5:8000'+$(document).find(query).find('.post-comments').find('a').attr('href');
+        var link = window.location.origin+$(document).find(query).find('.post-comments').find('a').attr('href');
         console.log(link);
         $('#selection').val(link);
         $('#selection').trigger('select');

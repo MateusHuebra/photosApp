@@ -2,11 +2,13 @@
 
 namespace Dao;
 
+use Service\Settings;
+
 class Connection {
 	private $connection;
 
 	function __construct() {
-		$this->connection = new \PDO('mysql:host=localhost;dbname=photosapp', 'root', 'Abc_12345');
+		$this->connection = new \PDO('mysql:host='.SETTINGS['database']['host'].';dbname='.SETTINGS['database']['dbname'], SETTINGS['database']['username'], SETTINGS['database']['password']);
 	}
 
 	function selectOne(string $query) {

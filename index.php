@@ -1,5 +1,9 @@
 <?php
 
+$str = file_get_contents('settings.json');
+$str = json_decode($str, true);
+DEFINE('SETTINGS', $str);
+
 spl_autoload_register(function ($class_name) {
     require str_replace('\\', '/', $class_name).'.php';
 });
