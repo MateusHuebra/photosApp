@@ -1,8 +1,0 @@
-{
-    "database": {
-      "host": "localhost",
-      "dbname": "photosapp",
-      "username": "root",
-      "password": "Abc_12345"
-    }
-}

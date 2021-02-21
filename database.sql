@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE INDEX `userame_UNIQUE` (`username` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `photo_UNIQUE` (`photo` ASC),
-  UNIQUE INDEX `cover_UNIQUE` (`cover` ASC))
+  UNIQUE INDEX `cover_UNIQUE` (`cover` ASC));
 
 
 -- -----------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `post` (
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `like` (
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -90,4 +90,4 @@ CREATE TABLE IF NOT EXISTS `follow` (
     FOREIGN KEY (`userId` , `followsId`)
     REFERENCES `user` (`id` , `id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
