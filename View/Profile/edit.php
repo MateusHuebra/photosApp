@@ -5,27 +5,48 @@
       <div class="row">
         <div class="input-field col s10 offset-s1">
           <input name="username" id="username" type="text" class="validate" required="true" value="<?php echo $_SESSION['user']->getUsername();  ?>" >
-          <label for="username">Username</label>
+          <label for="username"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'authentication.username'); ?></label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s10 offset-s1">
           <input name="email" id="email" type="text" class="validate" required="true" value="<?php echo $_SESSION['user']->getEmail();  ?>" >
-          <label for="email">Email</label>
+          <label for="email"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'authentication.email'); ?></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s10 offset-s1">
+          <select name="lang">
+            <?php
+                foreach (glob("Service/Language/*.php") as $file) {
+                  $file = explode('/', $file);
+                  $file = explode('.', $file[2]);
+                  echo '<option value="'.$file[0].'"';
+                  if($_SESSION['lang']==$file[0]) {
+                    echo ' selected';
+                  }
+                  echo'>'.$file[0].'</option>';
+                }
+            ?>
+          </select>
+          <label><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.language'); ?></label>
         </div>
       </div>
 
       <div class="row">
-     	 	<button class="col s8 offset-s2 waves-effect waves-light blue darken-4 btn">UPDATE INFO</button>
+     	 	<button class="col s8 offset-s2 waves-effect waves-light blue darken-4 btn"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'authentication.updateInfo'); ?></button>
   	  </div>
 
         <div class="row">
-     	 	<a class="col s8 offset-s2 waves-effect waves-light red darken-4 btn" disabled>CHANGE PASSWORD</a>
+     	 	<a class="col s8 offset-s2 waves-effect waves-light red darken-4 btn" disabled><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'authentication.changePassword'); ?></a>
   	    </div>
     </form>
   </div>
 
   <script type="text/javascript">
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
     <?php
     if (!is_null($error)) {
         echo 'M.toast({html: "' . $error . '", classes: "rounded"});';

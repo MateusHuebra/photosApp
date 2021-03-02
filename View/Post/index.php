@@ -21,7 +21,7 @@
 	<div class="row">
 	<div class="col s12 l4 offset-l4 input-field comments-input">
 		<textarea style="padding-right: 50px;" id="commentTextarea" maxlength="255" rows="5" class="materialize-textarea"></textarea>
-		<label for="commentTextarea">Add a comment</label>
+		<label for="commentTextarea"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.addAComment'); ?></label>
 
 		<button id="sendComment" style=" position: absolute; right: 10px; bottom: 17px;" class="btn blue darken-4">
 			<i class="material-icons">send</i>

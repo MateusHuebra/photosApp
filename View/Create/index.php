@@ -21,14 +21,14 @@
                 <input id="pictureUpload" name="picture" type="file" multiple>
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Select picture">
+                <input class="file-path validate" type="text" placeholder="<?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.selectPicture'); ?>">
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
                 <textarea name="postText" id="text" class="materialize-textarea" maxlength="255"><?php echo $info; ?></textarea>
-                <label for="text">Caption</label>
+                <label for="text"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.caption'); ?></label>
                 <div id="counter">255</div>
             </div>
             <div class="fixed-action-btn">

@@ -24,6 +24,11 @@ abstract class Controller {
 		die();
 	}
 
+	public function getStringByLang() {
+		$string = call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), $_POST['string']);
+		echo json_encode($string);
+	}
+
 	protected function json($data) {
 		header('Content-Type: application/json');
 		echo json_encode($data);

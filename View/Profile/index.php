@@ -29,7 +29,7 @@
             </div>
             <a class="profile-edit color-black" href="/profile/edit">
                 <span>
-                    <i id="edit" class="material-icons">edit</i> <span>edit</span>
+                    <i id="edit" class="material-icons">edit</i> <span><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.edit'); ?></span>
                 </span>
             </a>
         </div>
@@ -70,8 +70,8 @@
 
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves btn-flat">Cancel</a>
-                <button name="submit" type="submit" class="modal-close waves-effect waves-teal btn-flat">Change Picture</button>
+                <a href="#!" class="modal-close waves-effect waves btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.cancel'); ?></a>
+                <button name="submit" type="submit" class="modal-close waves-effect waves-teal btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.changePicture'); ?></button>
             </div>
         </form>
     </div>

@@ -33,10 +33,10 @@
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
 				<a id="nav-search-mobile" href="/search"><i class="material-icons" style="right: 20px; position: absolute;">search</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="/home">Home</a></li>
-					<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
+					<li><a href="/home"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.home'); ?></a></li>
+					<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.profile'); ?></a></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>
-					<li><a class="modal-trigger" href="#modalLogout">Logout</a></li>
+					<li><a class="modal-trigger" href="#modalLogout"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.logout'); ?></a></li>
 					<li style="width: 47px;"></li>
 				</ul>
 			</div>
@@ -48,30 +48,30 @@
 			<img src="/images/cover.png" alt="" class="sidenav-photo">
 			<img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="sidenav-circle">
 		</div>
-		<li><a href="/home">Home</a></li>
-		<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>">Profile</a></li>
-		<li><a class="modal-trigger" href="#modalLogout">Logout</a></li>
+		<li><a href="/home"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.home'); ?></a></li>
+		<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.profile'); ?></a></li>
+		<li><a class="modal-trigger" href="#modalLogout"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.logout'); ?></a></li>
 	</ul>
 
 	<div id="modalLogout" class="modal">
 		<div class="modal-content">
-			<h4>Logout</h4>
-			<p>Are you sure you want to logout?</p>
+			<h4><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.logout'); ?></h4>
+			<p><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.areYouSureYouWantToLogout'); ?></p>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-close waves-effect waves-white btn-flat">Cancel</a>
-			<a href="/authentication/login" class="waves-effect waves-red btn-flat">Yes</a>
+			<a class="modal-close waves-effect waves-white btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.cancel'); ?></a>
+			<a href="/authentication/login" class="waves-effect waves-red btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.yes'); ?></a>
 		</div>
 	</div>
 
 	<div id="modalDeletePost" class="modal">
 		<div class="modal-content">
-			<h4>Delete post</h4>
-			<p>Are you sure you want to delete this post?</p>
+			<h4><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.deletePost'); ?></h4>
+			<p><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.areYouSureYouWantToDeleteThisPost'); ?></p>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-close waves-effect waves-white btn-flat">Cancel</a>
-			<a id="modalDeletePostConfirm" class="modal-close waves-effect waves-red btn-flat">Yes</a>
+			<a class="modal-close waves-effect waves-white btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.cancel'); ?></a>
+			<a id="modalDeletePostConfirm" class="modal-close waves-effect waves-red btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.yes'); ?></a>
 		</div>
 	</div>
 
@@ -80,16 +80,17 @@
 	<textarea id="selection" style="opacity: 0; position: absolute; top: -150px;"></textarea>
 	
 	<ul id='dropdown-post-your' class='dropdown-content'>
-		<li id="more-copy"><span style="color: black;">copy link</span></li>
-		<li id="more-delete" class="modal-trigger" href="#modalDeletePost"><span style="color: black;">delete</span></li>
+		<li id="more-copy"><span style="color: black;"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.copyLink'); ?></span></li>
+		<li id="more-delete" class="modal-trigger" href="#modalDeletePost"><span style="color: black;"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.delete'); ?></span></li>
 	</ul>
 	<ul id='dropdown-post-their' class='dropdown-content'>
-		<li id="more-copy"><span style="color: black;">copy link</span></li>
+		<li id="more-copy"><span style="color: black;"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.copyLink'); ?></span></li>
 	</ul>
 
 	<script type="text/javascript">
 		<?php
-		echo 'var user = {id:' . $_SESSION['user']->getId() . ', username:"' . $_SESSION['user']->getUsername() . '", photo:"' . $_SESSION['user']->getProfilePicture() . '"};';
+		echo 'var user = {id:' . $_SESSION['user']->getId() . ', username:"' . $_SESSION['user']->getUsername() . '", photo:"' . $_SESSION['user']->getProfilePicture() . '"}; ';
+		echo 'var language = ' . json_encode(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'getAll'), 'posts'));
 		?>
 	</script>
 	<script type="text/javascript" src="/js/Layout/Header.js"></script>

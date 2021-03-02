@@ -135,16 +135,20 @@ function countComments() {
         method: 'POST'
     }).done(function(count){
         if(count==1) {
-            $(document).find('.post-comments').find('a').text('1 comment');
+            $(document).find('.post-comments').find('a').text('1 '+language.posts.comment);
         } else {
-            $(document).find('.post-comments').find('a').text(''+count+' comments');
+            $(document).find('.post-comments').find('a').text(''+count+' '+language.posts.comments);
         }
         
         console.log(commentsLoaded+' of '+count+' comments loaded');
         if(commentsLoaded == count) {   
             $(document).find('#comment-load').remove();
         } else {
-            $(document).find('#comment-load').text('see more '+(count - commentsLoaded)+' comments');
+            if((count - commentsLoaded) == 1) {
+                $(document).find('#comment-load').text(language.interface.seeMore+' '+(count - commentsLoaded)+' '+language.posts.comment);
+            } else {
+                $(document).find('#comment-load').text(language.interface.seeMore+' '+(count - commentsLoaded)+' '+language.posts.comments);
+            }
         }
     })
 }

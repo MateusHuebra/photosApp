@@ -23,6 +23,6 @@ class Create extends LoggedController {
         $daoPost = new \Dao\Post();
         $post = new \Model\Post(null, $_POST['postText'], $fileName, null, $_SESSION['user']->getId());
         $daoPost->save($post);
-        $this->redirect('create', 'Your picture was posted!');
+        $this->redirect('create', call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.yourPictureWasPosted'));
     }
 }

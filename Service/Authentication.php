@@ -32,42 +32,43 @@ class Authentication {
 			'pagenotfound',
 			'post',
 			'profile',
-			'search'
+			'search',
+			'language'
 		];
 		if(empty($username)) {
-			throw new \Exception\InvalidUsername("Username is empty");
+			throw new \Exception\InvalidUsername(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.usernameIsEmpty'));
 		} else if (strlen($username) > 16) {
-			throw new \Exception\InvalidUsername("Username is too long / max: 16 characters");
+			throw new \Exception\InvalidUsername(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.usernameIsTooLong'));
 		} else if (!preg_match("/^[A-Za-z0-9_]{1,16}$/", $username)) {
-			throw new \Exception\InvalidUsername("Username cannot have special characters / just letters, numbers and underscore");
+			throw new \Exception\InvalidUsername(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.usernameCannotHaveSpecialCharacters'));
 		} else if (!preg_match("/^[A-Za-z]{1}/", $username)) {
-			throw new \Exception\InvalidUsername("Username must begins with a letter");
+			throw new \Exception\InvalidUsername(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.usernameMustBeginsWithALetter'));
 		} else if (in_array(strtolower($username), $reservedWords)) {
-			throw new \Exception\InvalidUsername($username." is a reserved word");
+			throw new \Exception\InvalidUsername($username.' '.call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.isAReservedWord'));
 		} else if ((new \Dao\User())->checkUsernameExists($username)) {
 			if(session_id()!='' && strtolower($_SESSION['user']->getUsername()) == strtolower($username)) {
 				//using the same username
 			} else {
-				throw new \Exception\InvalidUsername("Username already being used");
+				throw new \Exception\InvalidUsername(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.usernameAlreadyTaken'));
 			}
 		}
 	}
 
 	function validateEmail(string $email) {
 		if(empty($email)) {
-			throw new \Exception\InvalidEmail("Email is empty");
+			throw new \Exception\InvalidEmail(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.emailIsEmpty'));
 		} else if (strlen($email) > 128) {
-			throw new \Exception\InvalidEmail("Email is too long / max: 128 characters");
+			throw new \Exception\InvalidEmail(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.emailIsTooLong'));
 		//} else if (!preg_match("/^[A-Za-z0-9_@.]{1,128}$/", $email)) {
 		//	return "email cannot have special characters</br> just letters, numbers";
 	
 		} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			throw new \Exception\InvalidEmail("It must be an email");
+			throw new \Exception\InvalidEmail(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.itMustBeAnEmail'));
 		} else if ((new \Dao\User())->checkEmailExists($email)) {
 			if(session_id()!='' && strtolower($_SESSION['user']->getEmail()) == strtolower($email)) {
 				//using the same email
 			} else {
-				throw new \Exception\InvalidEmail("Email already being used");
+				throw new \Exception\InvalidEmail(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.emailAlreadyBeingUsed'));
 			}
 			
 		}
@@ -75,11 +76,11 @@ class Authentication {
 
 	function validatePassword(string $password) {
 		if(empty($password)) {
-			throw new \Exception\InvalidPassword("Password is empty");
+			throw new \Exception\InvalidPassword(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.passwordIsEmpty'));
 		} else if (strlen($password) > 16) {
-			throw new \Exception\InvalidPassword("Password is too long / max: 16 characters");
+			throw new \Exception\InvalidPassword(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.passwordIsTooLong'));
 		} else if (strlen($password) < 4) {
-			throw new \Exception\InvalidPassword("Password is too short / min: 4 characters");
+			throw new \Exception\InvalidPassword(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.passwordIsTooShort'));
 		}
 	}
 

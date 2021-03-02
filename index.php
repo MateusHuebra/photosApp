@@ -4,6 +4,22 @@ spl_autoload_register(function ($class_name) {
     require str_replace('\\', '/', $class_name).'.php';
 });
 
+session_start();
+if(!isset($_SESSION['lang'])) {
+	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+	foreach (glob("Service/Language/*.php") as $file) {
+		$file = explode('/', $file);
+		$file = explode('.', $file[2]);
+		if ($lang == call_user_func(array('\Service\Language\\'.$file[0], 'get'), 'acronym')) {
+			$_SESSION['lang'] = $file[0];
+		}
+	}
+	if(!isset($_SESSION['lang'])) {
+		$_SESSION['lang'] = 'English';
+	}
+}
+
 $requestUri = explode('?', $_SERVER['REQUEST_URI']);
 $requestUri = explode('/', $requestUri[0]);
 $className = 'Controller\\'.ucfirst($requestUri[1]);

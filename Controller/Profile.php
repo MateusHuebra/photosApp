@@ -31,9 +31,9 @@ class Profile extends LoggedController {
 
         $daoUser = new \Dao\User();
         $daoUser->savePhoto($fileName, $_SESSION['user']->getId());
-        echo $_SESSION['user']->getId();
+        //echo $_SESSION['user']->getId();
         $_SESSION['user']->setPhoto($fileName);
-        $this->redirect($_SESSION['user']->getUsername(), 'Profile picture changed!');
+        $this->redirect($_SESSION['user']->getUsername(), call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.profilePictureChanged'));
     }
 
     function follow() {

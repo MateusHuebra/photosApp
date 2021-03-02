@@ -87,7 +87,9 @@ CREATE TABLE IF NOT EXISTS `follow` (
   `followsId` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`userId`, `followsId`),
   CONSTRAINT `fk_follow_1`
-    FOREIGN KEY (`userId` , `followsId`)
-    REFERENCES `user` (`id` , `id`)
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`),
+    FOREIGN KEY (`followsId`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

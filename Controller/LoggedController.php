@@ -6,7 +6,7 @@ abstract class LoggedController extends Controller {
 
 	function __construct() {
 		if(!(new \Service\Authentication())->isLogged()) {
-			$this->redirect('authentication/login', 'You should be logged in to see that page');
+			$this->redirect('authentication/login', call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.youShouldBeLoggedInToSeeThatPage'));
 		}
 	}
 	
@@ -19,20 +19,20 @@ abstract class LoggedController extends Controller {
 	protected function uploadPicture(string $targetFolder, string $targetName, bool $square = false, string $old = null) {
 		$targetFolder = "images/".$targetFolder."/";
 		if(!isset($_FILES['picture']) || empty($_FILES['picture']['name'])) {
-			throw new \Exception\UploadPictureError("No file was sent");
+			throw new \Exception\UploadPictureError(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.noFileWasSent'));
 		}
 		$fileExtension = strtolower(pathinfo(basename($_FILES["picture"]["name"]),PATHINFO_EXTENSION));
 		$targetName = $targetName .'.'. $fileExtension;
 		$target = $targetFolder . $targetName;
 		
 		if($fileExtension != 'png' && $fileExtension != 'jpg' && $fileExtension != 'jpeg') {
-			throw new \Exception\UploadPictureError("Your file is not a PNG, JPG or JPEG");
+			throw new \Exception\UploadPictureError(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.yourFileIsNotAPNGJPGorJPEG'));
 		}
 		if($_FILES["picture"]["size"] > 10000000) {
-			throw new \Exception\UploadPictureError("Your file is too large");
+			throw new \Exception\UploadPictureError(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.yourFIleIsTooLarge'));
 		}
 		if($square && (getimagesize($_FILES["picture"]["tmp_name"])[0] != getimagesize($_FILES["picture"]["tmp_name"])[1])) {
-			throw new \Exception\UploadPictureError("Your image is not a square");
+			throw new \Exception\UploadPictureError(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.yourImageIsNotASquare'));
 		}
 
 		if (!file_exists($targetFolder)) {
@@ -47,7 +47,7 @@ abstract class LoggedController extends Controller {
 			//echo $target;
 			return $targetName;
 		} else {
-			throw new \Exception\UploadPictureError("Something gone wrong");
+			throw new \Exception\UploadPictureError(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.somethingGoneWrong'));
 		}
 
 	}

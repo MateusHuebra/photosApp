@@ -54,10 +54,10 @@ $(function() {
         }).done(function(response) {
             if(response) {
                 $('.profile-follow').find('i').text('person_add_alt_1');
-                $('.profile-follow').find('span').find('span').text('following');
+                $('.profile-follow').find('span').find('span').text(language.interface.following);
             } else {
                 $('.profile-follow').find('i').text('person_add_alt');
-                $('.profile-follow').find('span').find('span').text('follow');
+                $('.profile-follow').find('span').find('span').text(language.interface.follow);
             }
         })
     }
@@ -65,12 +65,12 @@ $(function() {
     $('.profile-follow').on('click', function() {
         if ($(this).find('i').text() == 'person_add_alt') {
             $(this).find('i').text('person_add_alt_1');
-            $(this).find('span').find('span').text('following');
+            $(this).find('span').find('span').text(language.interface.following);
             follow('follow');
         } else {
             url = "/profile/unfollow";
             $(this).find('i').text('person_add_alt');
-            $(this).find('span').find('span').text('follow');
+            $(this).find('span').find('span').text(language.interface.follow);
             follow('unfollow');
         }
     })

@@ -37,12 +37,12 @@
 
 <div id="modalNoFollows" class="modal">
 		<div class="modal-content">
-			<h5>No posts to show</h5>
-			<p>Search for people to follow</a></p>
+			<h5><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.noPostsToShow'); ?></h5>
+			<p><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.searchForPeopleToFollow'); ?></a></p>
 		</div>
 		<div class="modal-footer">
-			<a class="modal-close waves-effect waves-white btn-flat">Cancel</a>
-			<a href="/search" class="waves-effect waves-white btn-flat"><i class="material-icons left">search</i>search</a>
+			<a class="modal-close waves-effect waves-white btn-flat"><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.cancel'); ?></a>
+			<a href="/search" class="waves-effect waves-white btn-flat"><i class="material-icons left">search</i><?php echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'interface.search'); ?></a>
 		</div>
 	</div>
 

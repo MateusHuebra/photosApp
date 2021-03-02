@@ -66,7 +66,7 @@ $(function() {
         document.execCommand('copy');
         $('#selection').trigger('blur');
         M.Toast.dismissAll();
-        M.toast({html: "copied to the clipboard", classes: "rounded"});
+        M.toast({html: language.toasts.copiedToTheClipboard, classes: "rounded"});
     })
 
     $('#modalDeletePostConfirm').on('click', function() {
@@ -80,7 +80,7 @@ $(function() {
             method: 'POST'
         }).done(function(result) {
             if(result=='') {
-                M.toast({html: "your post has been deleted", classes: "rounded"});
+                M.toast({html: language.toasts.yourPostHasBeenDeleted, classes: "rounded"});
                 $(document).find(`[data-postid='${postToBeDeleted}']`).parent().parent().parent().remove();
             } else {
                 M.toast({html: result, classes: "rounded"});
@@ -187,15 +187,15 @@ function changeLikeAndCommentText(likes, likesObject, comments, commentsObject) 
     console.log("comments for id"+postId+": "+ comments);
 
     if (likes == 1) {
-        likesObject.text('like');
+        likesObject.text(language.posts.like);
     } else {
-        likesObject.text('likes');
+        likesObject.text(language.posts.likes);
     }
 
     if (comments == 1) {
-        commentsObject.text('1 comment');
+        commentsObject.text('1 '+language.posts.comment);
     } else {
-        commentsObject.text(comments+' comments');
+        commentsObject.text(comments+' '+language.posts.comments);
     }
     
 }
@@ -220,15 +220,15 @@ function queryLikesAndComments() {
             var commentsObject = $(document).find('.post-interactions[data-postid="'+post.id+'"]').find('.post-comments');
             
             if (post.likes == 1) {
-                var likes = 'like';
+                var likes = language.posts.like;
             } else {
-                var likes = 'likes';
+                var likes = language.posts.likes;
             }
         
             if (post.comments == 1) {
-                var comments = post.comments+' comment';
+                var comments = post.comments+' '+language.posts.comment;
             } else {
-                var comments = post.comments+' comments';
+                var comments = post.comments+' '+language.posts.comments;
             }
 
             likesObject.html(post.likes + ' <a href="#modalLikes" class="color-black modal-trigger like-trigger">'+likes+'</a>');
