@@ -89,4 +89,8 @@ class English {
         return $strings;
     }
 
+    static function getAll() {
+        return self::STRINGS;
+    }
+
 }
