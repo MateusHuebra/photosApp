@@ -16,6 +16,20 @@ class Follow extends Dao {
 		return $connection->selectAll($query);
     }
 
+    function getFollowersCount(int $userId) {
+        $query = "SELECT count(userId) as 'count' FROM follow WHERE followsId = ".$userId;
+        $connection = $this->getConnection();
+		$result = $connection->selectAll($query);
+        return $result[0]['count'];
+    }
+
+    function getFollowingCount(int $userId) {
+        $query = "SELECT count(followsId) as 'count' FROM follow WHERE userId = ".$userId;
+        $connection = $this->getConnection();
+		$result = $connection->selectAll($query);
+        return $result[0]['count'];
+    }
+
     function set(int $userId, int $followsId) {
         $query = "INSERT INTO follow VALUES(".$userId.", ".$followsId.")";
         $connection = $this->getConnection();

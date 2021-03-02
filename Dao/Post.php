@@ -75,6 +75,14 @@ class Post extends Dao {
         return $posts;
     }
 
+    function getCountById(int $userId) {
+        $query = "SELECT count(id) as 'count' FROM post
+                WHERE userId = ".$userId;
+        $connection = $this->getConnection();
+        $result = $connection->selectAll($query);
+        return $result[0]['count'];
+    }
+
     function getOne(int $id, int $pic) {
         $query = "SELECT id, text, picture, DATE_FORMAT(createdAt, '%d/%m/%Y %H:%i') as createdAt, userId
                 FROM post

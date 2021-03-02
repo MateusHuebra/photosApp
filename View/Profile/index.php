@@ -16,6 +16,25 @@
 
     <div class="row content-profile">
         <div class="col s12 l4 offset-l4 no-padding profile-content">
+            <div class="profile-info">
+                <span><?php
+                    if($profileInfo['posts'] == 1) {
+                        echo $profileInfo['posts'].' '.\Service\Translation::get('interface.post').'</br>';
+                    } else {
+                        echo $profileInfo['posts'].' '.\Service\Translation::get('interface.posts').'</br>';
+                    }
+                ?></span>
+                <span><?php
+                    if($profileInfo['followers'] == 1) {
+                        echo $profileInfo['followers'].' '.\Service\Translation::get('interface.follower').'</br>';
+                    } else {
+                        echo $profileInfo['followers'].' '.\Service\Translation::get('interface.followers').'</br>';
+                    }
+                ?></span>
+                <span><?php
+                    echo $profileInfo['following'].' '.\Service\Translation::get('interface.following').'</br>';
+                ?></span>
+            </div>
             <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
             <div class="profile-picturearea">
                 <img src="<?php echo $profileUser->getProfilePicture(); ?>" alt="" class="profile-picture">

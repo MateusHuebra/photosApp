@@ -168,6 +168,13 @@ body {
     position: absolute;
 }
 
+.profile-info {
+    bottom: 8px;
+    left: 114px;
+    position: absolute;
+    font-weight: 500;
+}
+
 #follow {
     vertical-align: bottom;
 }

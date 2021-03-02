@@ -7,9 +7,15 @@ class Profile extends LoggedController {
     function viewProfile(string $username) {
         $this->username = $username;
         $daoUser = new \Dao\User();
+        $daoPost = new \Dao\Post();
+        $daoFollow = new \Dao\Follow();
         $user = $daoUser->getByUsername($username);
+        $profileInfo['posts'] = $daoPost->getCountById($user->getId());
+        $profileInfo['followers'] = $daoFollow->getFollowersCount($user->getId());
+        $profileInfo['following'] = $daoFollow->getFollowingCount($user->getId());
         $this->view('Profile/index', [
             'profileUser' => $user,
+            'profileInfo' => $profileInfo,
             'error' => $this->showErrorMessage()
         ]);
     }
