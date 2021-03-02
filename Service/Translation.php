@@ -16,4 +16,8 @@ class Translation {
         echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), $key);
     }
 
+    static function getFromSpecific(string $language,string $key) {
+        return call_user_func(array('\Service\Language\\'.$language, 'get'), $key);
+    }
+
 }

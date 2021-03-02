@@ -15,8 +15,8 @@ class Português {
             'signup' => 'criar conta',
             'updateInfo' => 'atualizar dados',
             'changePassword' => 'mudar senha',
-            'ifYouHaventAnAccount' => 'não tenho uma conta',
-            'ifYouHaveAnAccount' => 'já tenho uma conta'
+            'ifYouHaventAnAccount' => 'não tem uma conta',
+            'ifYouHaveAnAccount' => 'já tem uma conta'
         ],
         'interface' => [
             'language' => 'Idioma',
