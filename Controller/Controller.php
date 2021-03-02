@@ -25,7 +25,7 @@ abstract class Controller {
 	}
 
 	public function getStringByLang() {
-		$string = call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), $_POST['string']);
+		$string = \Service\Translation::get($_POST['string']);
 		echo json_encode($string);
 	}
 

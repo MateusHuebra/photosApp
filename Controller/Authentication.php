@@ -78,7 +78,7 @@ class Authentication extends Controller {
 		$modelUser = new \Model\User($_SESSION['user']->getId(), $_POST['username'], null, $_POST['email']);
 		$user = $daoUser->updateInfo($modelUser);
 		(new \Service\Authentication())->login($user);
-		$this->redirect('profile/edit', call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.infoUpdated'));
+		$this->redirect('profile/edit', \Service\Translation::get('toasts.infoUpdated'));
 	}
 
 }

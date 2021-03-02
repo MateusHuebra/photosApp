@@ -9,7 +9,7 @@ class User extends Dao {
 		$connection = $this->getConnection();
 		$result = $connection->selectOne($query);
 		if($result==false) {
-			throw new \Exception\InvalidCredentials(call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), 'toasts.invalidCredentials'));
+			throw new \Exception\InvalidCredentials(\Service\Translation::get('toasts.invalidCredentials'));
 		}
 		return new \Model\User($result['id'], $result['username'], $result['name'], $result['email'], null, $result['photo'], $result['cover']);
 	}

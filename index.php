@@ -11,7 +11,7 @@ if(!isset($_SESSION['lang'])) {
 	foreach (glob("Service/Language/*.php") as $file) {
 		$file = explode('/', $file);
 		$file = explode('.', $file[2]);
-		if ($lang == call_user_func(array('\Service\Language\\'.$file[0], 'get'), 'acronym')) {
+		if ($lang == \Service\Translation::get('acronym')) {
 			$_SESSION['lang'] = $file[0];
 		}
 	}
