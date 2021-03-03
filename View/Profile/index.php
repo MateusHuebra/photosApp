@@ -17,22 +17,18 @@
     <div class="row content-profile">
         <div class="col s12 l4 offset-l4 no-padding profile-content">
             <div class="profile-info">
-                <span><?php
-                    if($profileInfo['posts'] == 1) {
-                        echo $profileInfo['posts'].' '.\Service\Translation::get('interface.post').'</br>';
-                    } else {
-                        echo $profileInfo['posts'].' '.\Service\Translation::get('interface.posts').'</br>';
-                    }
+                <span id="profile-info-posts"><?php
+                    echo $profileInfo['posts'].' '.\Service\Translation::get(
+                        ($profileInfo['posts'] == 1 ? 'interface.post' : 'interface.posts')
+                    ).'</br>';
                 ?></span>
-                <span><?php
-                    if($profileInfo['followers'] == 1) {
-                        echo $profileInfo['followers'].' '.\Service\Translation::get('interface.follower').'</br>';
-                    } else {
-                        echo $profileInfo['followers'].' '.\Service\Translation::get('interface.followers').'</br>';
-                    }
+                <span id="profile-info-followers"><?php
+                    echo $profileInfo['followers'].' '.\Service\Translation::get(
+                        ($profileInfo['followers'] == 1 ? 'interface.follower' : 'interface.followers')
+                    ).'</br>';
                 ?></span>
-                <span><?php
-                    echo $profileInfo['following'].' '.\Service\Translation::get('interface.following').'</br>';
+                <span id="profile-info-following"><?php
+                    echo $profileInfo['following'].' '.\Service\Translation::get('interface.following');
                 ?></span>
             </div>
             <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">

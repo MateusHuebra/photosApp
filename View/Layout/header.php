@@ -26,7 +26,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper indigo darken-4">
-				<a href="/home" class="brand-logo center">photosApp</a>
+				<a href="/home" class="brand-logo center" style="font-family: custom; font-weight: 600;">photosApp</a>
 				<!--
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->

@@ -352,3 +352,8 @@ body {
         background-color: rgb(255 255 255);
     }
 }
+
+@font-face {
+    font-family: custom;
+    src: url(/css/Montserrat-Regular.ttf);
+}

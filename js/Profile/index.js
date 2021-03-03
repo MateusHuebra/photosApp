@@ -44,6 +44,7 @@ $(function() {
     if(profileId == user['id']) {
         $('.profile-follow').remove();
     } else {
+        $('#profile-picture').remove();
         $('.profile-edit').remove();
         $.ajax({
             url: 'profile/isFollowing',
@@ -67,11 +68,21 @@ $(function() {
             $(this).find('i').text('person_add_alt_1');
             $(this).find('span').find('span').text(language.interface.following);
             follow('follow');
+            var followers = $('#profile-info-followers').text().split(' ')[0];
+            followers++;
+            followers == 1 ? followers+= ' '+language.interface.follower+'</br>'
+                        : followers+= ' '+language.interface.followers+'</br>'
+            $('#profile-info-followers').html(followers);
         } else {
             url = "/profile/unfollow";
             $(this).find('i').text('person_add_alt');
             $(this).find('span').find('span').text(language.interface.follow);
             follow('unfollow');
+            var followers = $('#profile-info-followers').text().split(' ')[0];
+            followers--;
+            followers == 1 ? followers+= ' '+language.interface.follower+'</br>'
+                        : followers+= ' '+language.interface.followers+'</br>'
+            $('#profile-info-followers').html(followers);
         }
     })
 

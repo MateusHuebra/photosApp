@@ -26,3 +26,8 @@
 .row-fixed {
 	margin-bottom: 8px !important;
 }
+
+@font-face {
+    font-family: custom;
+    src: url(/css/Montserrat-Regular.ttf);
+}
