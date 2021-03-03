@@ -17,19 +17,19 @@
     <div class="row content-profile">
         <div class="col s12 l4 offset-l4 no-padding profile-content">
             <div class="profile-info">
-                <span id="profile-info-posts"><?php
+                <a id="profile-info-posts" class="color-black"><?php
                     echo $profileInfo['posts'].' '.\Service\Translation::get(
                         ($profileInfo['posts'] == 1 ? 'interface.post' : 'interface.posts')
                     ).'</br>';
-                ?></span>
-                <span id="profile-info-followers"><?php
+                ?></a>
+                <a href="#modalFollowers" id="profile-info-followers" class="color-black modal-trigger"><?php
                     echo $profileInfo['followers'].' '.\Service\Translation::get(
                         ($profileInfo['followers'] == 1 ? 'interface.follower' : 'interface.followers')
                     ).'</br>';
-                ?></span>
-                <span id="profile-info-following"><?php
+                ?></a>
+                <a href="#modalFollowing" id="profile-info-following" class="color-black modal-trigger"><?php
                     echo $profileInfo['following'].' '.\Service\Translation::get('interface.following');
-                ?></span>
+                ?></a>
             </div>
             <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
             <div class="profile-picturearea">
@@ -60,6 +60,27 @@
     <div id="modalLikes" class="modal modal-fixed-footer">
         <div class="modal-content likeslist-content">
             <ul class="collection likeslist">
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves btn-flat">Close</a>
+        </div>
+    </div>
+
+    <div id="modalFollowers" class="modal modal-fixed-footer">
+        <div class="modal-content likeslist-content">
+            <h5 style="padding: 0% 0% 2% 8%;"><?php \Service\Translation::echo('interface.followers'); ?></h5>
+            <ul id="followerslist" class="collection">
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves btn-flat">Close</a>
+        </div>
+    </div>
+    <div id="modalFollowing" class="modal modal-fixed-footer">
+        <div class="modal-content likeslist-content">
+            <h5 style="padding: 0% 0% 2% 8%;"><?php \Service\Translation::echo('interface.following'); ?></h5>
+            <ul id="followinglist" class="collection">
             </ul>
         </div>
         <div class="modal-footer">

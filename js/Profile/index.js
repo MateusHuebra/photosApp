@@ -86,6 +86,13 @@ $(function() {
         }
     })
 
+    $('#profile-info-followers').on('click', function() {
+        loadFollows('followers');
+    })
+    $('#profile-info-following').on('click', function() {
+        loadFollows('following');
+    })
+
 })
 
 function loadPostsAjax(lastPostId = 0) {
@@ -114,5 +121,31 @@ function follow(url) {
         method: 'POST'
     }).done(function() {
 
+    })
+}
+
+function loadFollows(action) {
+    $.ajax({
+        url: "profile/seeFollows",
+        data: {
+            profileId: profileId,
+            action: action
+        },
+        method: 'POST'
+    }).done(function(follows) {
+        var followsHtml = '';
+        follows.forEach(follow => {
+            followsHtml += '<li class="collection-item post-username">';
+            if (follow.photo == null) {
+                followsHtml += '<img src="/images/profile.png" alt="" class="circle-post">';
+            } else {
+                followsHtml += '<img src="/images/database/' + follow.id + '/' + follow.photo + '" alt="" class="circle-post">';
+            }
+            followsHtml += ' <a class="color-black" href="/' + follow.username + '">' + follow.username + '</li>';
+        });
+        $('#'+action+'list').html(' ');
+        $('#'+action+'list').append(
+            followsHtml
+        );
     })
 }

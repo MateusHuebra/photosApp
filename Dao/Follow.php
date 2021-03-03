@@ -10,8 +10,12 @@ class Follow extends Dao {
 		return $connection->selectOne($query) != false;
     }
 
-    function get(int $userId) {
-        $query = "SELECT followsId FROM follow WHERE userId = ".$userId;
+    function get(int $userId, string $action) {
+
+        $query = "SELECT id, username, photo
+                FROM follow JOIN user on follow.".($action=='followers' ? "userId" : "followsId")." = user.id
+                WHERE ". ($action=='followers' ? "followsId" : "userId") ."= ".$userId."
+                ORDER BY (username = '".$_SESSION['user']->getUsername()."') desc, username asc";
         $connection = $this->getConnection();
 		return $connection->selectAll($query);
     }

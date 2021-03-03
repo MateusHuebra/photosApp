@@ -58,4 +58,11 @@ class Profile extends LoggedController {
         $this->json($response);
     }
 
+    function seeFollows() {
+		$daoFollow = new \Dao\Follow();
+		$result = $daoFollow->get($_POST['profileId'], $_POST['action']);
+
+		$this->json($result);
+	}
+
 }
