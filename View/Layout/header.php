@@ -31,13 +31,13 @@
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
-				<a id="nav-search-mobile" href="/search"><i class="material-icons" style="right: 20px; position: absolute;">search</i></a>
+				<a id="nav-search-mobile" class="sidenav-trigger" href="/search" style="position: absolute; right: 2px;"><i class="material-icons">search</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="/home"><?php \Service\Translation::echo('interface.home'); ?></a></li>
-					<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php \Service\Translation::echo('interface.profile'); ?></a></li>
+					<li><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
+					<span style="position: absolute; right: 15px;" class="dropdownNavBar-trigger" data-target='dropdown-navbar'>
+					<li><i class="material-icons">arrow_drop_down</i></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>
-					<li><a class="modal-trigger" href="#modalLogout"><?php \Service\Translation::echo('interface.logout'); ?></a></li>
-					<li style="width: 47px;"></li>
+					</span>
 				</ul>
 			</div>
 		</nav>
@@ -51,6 +51,8 @@
 		<li><a href="/home"><?php \Service\Translation::echo('interface.home'); ?></a></li>
 		<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php \Service\Translation::echo('interface.profile'); ?></a></li>
 		<li><a class="modal-trigger" href="#modalLogout"><?php \Service\Translation::echo('interface.logout'); ?></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a href="#"><?php \Service\Translation::echo('interface.about'); ?></a></li>
 	</ul>
 
 	<div id="modalLogout" class="modal">
@@ -86,6 +88,13 @@
 	<ul id='dropdown-post-their' class='dropdown-content'>
 		<li id="more-copy"><span style="color: black;"><?php \Service\Translation::echo('interface.copyLink'); ?></span></li>
 	</ul>
+	<ul id='dropdown-navbar' class='dropdown-content'>
+		<li><a style="color: black;" href="/home"><?php \Service\Translation::echo('interface.home'); ?></a></li>
+		<li><a style="color: black;" href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php \Service\Translation::echo('interface.profile'); ?></a></li>
+		<li><a style="color: black;" class="modal-trigger" href="#modalLogout"><?php \Service\Translation::echo('interface.logout'); ?></a></li>
+		<li class="divider" tabindex="-1"></li>
+		<li><a style="color: black;" href="#"><?php \Service\Translation::echo('interface.about'); ?></a></li>
+  	</ul>
 
 	<script type="text/javascript">
 		<?php

@@ -34,6 +34,7 @@ $(function() {
         commentscounter = $(this).parent().parent().find('.post-comments').find('a');
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
+        $('.likeslist').html(' ');
         like();
         if(typeof loadRecentComments === 'function') {
             loadRecentComments();
@@ -138,7 +139,10 @@ function loadPost(post, showComments = false) {
         lastPostId = post.id;
         //console.log("lastPostId: "+lastPostId);
         
-        $(document).find('.dropdownWithoutSelection-trigger').dropdown();
+        $(document).find('.dropdownWithoutSelection-trigger').dropdown({
+            'constrainWidth': false,
+            'alignment': "right"
+        });
 }
 
 function like() {
