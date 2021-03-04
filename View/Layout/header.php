@@ -30,7 +30,10 @@
 				<!--
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->
-				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
+				<span style="position: absolute; left: 0px;" class="dropdownNavBarMobile-trigger" data-target='dropdown-navbar'>
+					<a data-target="dropdown-navbar" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile">
+					<i class="material-icons" style="position: absolute; left: -21.5px; top: 0px;">arrow_drop_down</i></a>
+				</span>
 				<a id="nav-search-mobile" class="sidenav-trigger" href="/search" style="position: absolute; right: 2px;"><i class="material-icons">search</i></a>
 				<ul class="right hide-on-med-and-down">
 					<li style="position: absolute; right: 90px;" ><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
@@ -52,7 +55,7 @@
 		<li><a href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php \Service\Translation::echo('interface.profile'); ?></a></li>
 		<li><a class="modal-trigger" href="#modalLogout"><?php \Service\Translation::echo('interface.logout'); ?></a></li>
 		<li class="divider" tabindex="-1"></li>
-		<li><a href="#"><?php \Service\Translation::echo('interface.about'); ?></a></li>
+		<li><a href="/about"><?php \Service\Translation::echo('interface.about'); ?></a></li>
 	</ul>
 
 	<div id="modalLogout" class="modal">
@@ -93,7 +96,7 @@
 		<li><a style="color: black;" href="/<?php echo $_SESSION['user']->getUsername(); ?>"><?php \Service\Translation::echo('interface.profile'); ?></a></li>
 		<li><a style="color: black;" class="modal-trigger" href="#modalLogout"><?php \Service\Translation::echo('interface.logout'); ?></a></li>
 		<li class="divider" tabindex="-1"></li>
-		<li><a style="color: black;" href="#"><?php \Service\Translation::echo('interface.about'); ?></a></li>
+		<li><a style="color: black;" href="/about"><?php \Service\Translation::echo('interface.about'); ?></a></li>
   	</ul>
 
 	<script type="text/javascript">
