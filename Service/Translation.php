@@ -13,7 +13,7 @@ class Translation {
                 $language = 'English';
             }
         }
-        echo call_user_func(array('\Service\Language\\'.$language, 'get'), $key);
+        return call_user_func(array('\Service\Language\\'.$language, 'get'), $key);
     }
 
     static function getAll() {
