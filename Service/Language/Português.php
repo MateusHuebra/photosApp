@@ -6,7 +6,7 @@ class Português extends Methods {
     
     const STRINGS = [
         'acronym' => 'pt',
-        'backupLanguage' => 'English',
+        'backupLanguage' => 'Español',
         'authentication' => [
             'usernameOrEmail' => 'Nome de usuário ou Email',
             'username' => 'Nome de usuário',
