@@ -2,10 +2,11 @@
 
 namespace Service\Language;
 
-class English {
+class English extends Methods {
     
     const STRINGS = [
         'acronym' => 'en',
+        'backupLanguage' => '',
         'authentication' => [
             'usernameOrEmail' => 'Username or Email',
             'username' => 'Username',
@@ -26,7 +27,7 @@ class English {
             'about' => 'About',
             'copyLink' => 'copy link',
             'delete' => 'delete',
-            'deletePost' => 'deletePost',
+            'deletePost' => 'delete post',
             'addAComment' => 'Add a comment',
             'post' => 'post',
             'posts' => 'posts',
@@ -85,18 +86,5 @@ class English {
             'comments' => 'comments'
         ]
     ];
-
-    static function get(string $key) {
-        $keys = explode('.', $key);
-        $strings = self::STRINGS;
-        foreach ($keys as $key) {
-            $strings = $strings[$key];
-        }
-        return $strings;
-    }
-
-    static function getAll() {
-        return self::STRINGS;
-    }
 
 }

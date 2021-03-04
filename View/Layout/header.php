@@ -33,7 +33,7 @@
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle-mobile"></a>
 				<a id="nav-search-mobile" class="sidenav-trigger" href="/search" style="position: absolute; right: 2px;"><i class="material-icons">search</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
+					<li style="position: absolute; right: 90px;" ><a id="nav-search" href="/search"><i class="material-icons">search</i></a></li>
 					<span style="position: absolute; right: 15px;" class="dropdownNavBar-trigger" data-target='dropdown-navbar'>
 					<li><i class="material-icons">arrow_drop_down</i></li>
 					<li><img src="<?php echo $_SESSION['user']->getProfilePicture(); ?>" alt="" class="circle"></li>

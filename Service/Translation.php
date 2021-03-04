@@ -5,7 +5,15 @@ namespace Service;
 class Translation {
 
     static function get(string $key) {
-        return call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), $key);
+        $language = $_SESSION['lang'];
+        while(call_user_func(array('\Service\Language\\'.$language, 'get'), $key)==false) {
+            $testedLanguages[] = $language;
+            $language = call_user_func(array('\Service\Language\\'.$language, 'get'), 'backupLanguage');
+            if(in_array($language, $testedLanguages)) {
+                $language = 'English';
+            }
+        }
+        echo call_user_func(array('\Service\Language\\'.$language, 'get'), $key);
     }
 
     static function getAll() {
@@ -13,7 +21,7 @@ class Translation {
     }
 
     static function echo(string $key) {
-        echo call_user_func(array('\Service\Language\\'.$_SESSION['lang'], 'get'), $key);
+        echo self::get($key);
     }
 
     static function getFromSpecific(string $language,string $key) {

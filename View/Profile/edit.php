@@ -21,11 +21,13 @@
                 foreach (glob("Service/Language/*.php") as $file) {
                   $file = explode('/', $file);
                   $file = explode('.', $file[2]);
-                  echo '<option value="'.$file[0].'"';
-                  if($_SESSION['lang']==$file[0]) {
-                    echo ' selected';
+                  if($file[0]!='Methods') {
+                    echo '<option value="'.$file[0].'"';
+                    if($_SESSION['lang']==$file[0]) {
+                      echo ' selected';
+                    }
+                    echo'>'.$file[0].'</option>';
                   }
-                  echo'>'.$file[0].'</option>';
                 }
             ?>
           </select>

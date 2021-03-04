@@ -2,10 +2,11 @@
 
 namespace Service\Language;
 
-class Português {
+class Português extends Methods {
     
     const STRINGS = [
         'acronym' => 'pt',
+        'backupLanguage' => 'English',
         'authentication' => [
             'usernameOrEmail' => 'Nome de usuário ou Email',
             'username' => 'Nome de usuário',
@@ -85,18 +86,5 @@ class Português {
             'comments' => 'comentários'
         ]
     ];
-
-    static function get(string $key) {
-        $keys = explode('.', $key);
-        $strings = self::STRINGS;
-        foreach ($keys as $key) {
-            $strings = $strings[$key];
-        }
-        return $strings;
-    }
-
-    static function getAll() {
-        return self::STRINGS;
-    }
 
 }
