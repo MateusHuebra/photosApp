@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>photosApp</title>
+	<title><?php \Service\Translation::echo('interface.appName'); ?></title>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -26,7 +26,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper indigo darken-4">
-				<a href="/home" class="brand-logo center" style="font-family: custom; font-weight: 600;">photosApp</a>
+				<a href="/home" class="brand-logo center" style="font-family: custom; font-weight: 600;"><?php \Service\Translation::echo('interface.appName'); ?></a>
 				<!--
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			-->

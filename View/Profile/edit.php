@@ -1,8 +1,9 @@
 
-	<a href="/<?php echo $_SESSION['user']->getUsername(); ?>" class="waves-effect waves blue darken-4 btn-floating" style="left: 5px; top: 5px; margin-bottom: 3px;"><i class="material-icons">keyboard_backspace</i></a>
+	
     <div class="row content-login">
-    <form class="col s12 l4 offset-l4" method="post" action="/authentication/updateInfo">
-      <div class="row">
+    <form class="col s12 l4 offset-l4" method="post" action="/authentication/updateInfo" style="position: relative;">
+    <a href="/<?php echo $_SESSION['user']->getUsername(); ?>" class="waves-effect waves blue darken-4 btn-floating" style="position: absolute; left: 5px; top: 5px;"><i class="material-icons">keyboard_backspace</i></a>
+      <div class="row" style="padding-top: 43px;">
         <div class="input-field col s10 offset-s1">
           <input name="username" id="username" type="text" class="validate" required="true" value="<?php echo $_SESSION['user']->getUsername();  ?>" >
           <label for="username"><?php \Service\Translation::echo('authentication.username'); ?></label>

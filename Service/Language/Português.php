@@ -21,10 +21,12 @@ class Português extends Methods {
         ],
         'interface' => [
             'language' => 'Idioma',
+            'appName' => 'photosApp',
             'home' => 'Pagina Inicial',
             'profile' => 'Perfil',
             'logout' => 'Deslogar',
             'about' => 'Sobre',
+            'aboutThe' => 'Sobre o',
             'copyLink' => 'copiar link',
             'delete' => 'apagar',
             'deletePost' => 'apagar postagem',
@@ -84,6 +86,12 @@ class Português extends Methods {
             'likes' => 'curtidas',
             'comment' => 'comentário',
             'comments' => 'comentários'
+        ],
+        'about' => [
+            'introduction' => '<font class="color-black-bold">PhotosApp</font> é uma aplicação para web desenvolvida com o intuito na aprendizagem e prática na programação para web, com foco no modelo MVC (model - view - controller).',
+            'developer' => 'Aplicação desenvolvida inteiramente por <a href="/MateusHuebra" class="color-black-bold">Mateus Huebra</a>. Me encontre no <a href="https://www.linkedin.com/in/mateushuebra/" class="color-black-bold">LinkedIn</a>.',
+            'coding' => 'A aplicação foi construída com base em:</br>• PHP (backend)</br>• jQuery (frontend)</br>• MySQL (banco de dados)</br>• Materialize (framework CSS)',
+            'github' => 'O código fonte está disponível no <a href="https://github.com/MateusHuebra/photosApp" class="color-black-bold">GitHub</a>.'
         ]
     ];
 

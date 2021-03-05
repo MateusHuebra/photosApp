@@ -17,24 +17,24 @@
     <div class="row content-profile">
         <div class="col s12 l4 offset-l4 no-padding profile-content">
             <div class="profile-info">
-                <a id="profile-info-posts" class="color-black"><?php
+                <a id="profile-info-posts" class="color-black outline-white"><?php
                     echo $profileInfo['posts'].' '.\Service\Translation::get(
                         ($profileInfo['posts'] == 1 ? 'interface.post' : 'interface.posts')
                     ).'</br>';
                 ?></a>
-                <a href="#modalFollowers" id="profile-info-followers" class="color-black modal-trigger"><?php
+                <a href="#modalFollowers" id="profile-info-followers" class="color-black outline-white modal-trigger"><?php
                     echo $profileInfo['followers'].' '.\Service\Translation::get(
                         ($profileInfo['followers'] == 1 ? 'interface.follower' : 'interface.followers')
                     ).'</br>';
                 ?></a>
-                <a href="#modalFollowing" id="profile-info-following" class="color-black modal-trigger"><?php
+                <a href="#modalFollowing" id="profile-info-following" class="color-black outline-white modal-trigger"><?php
                     echo $profileInfo['following'].' '.\Service\Translation::get('interface.following');
                 ?></a>
             </div>
             <img src="<?php echo $profileUser->getCoverPicture(); ?>" alt="" class="profile-cover">
             <div class="profile-picturearea">
                 <img src="<?php echo $profileUser->getProfilePicture(); ?>" alt="" class="profile-picture">
-                <span class="profile-username"><?php echo $profileUser->getUsername(); ?></span>
+                <span class="profile-username outline-white"><?php echo $profileUser->getUsername(); ?></span>
                 <button id="profile-picture" onclick="$('#pictureUpload').trigger('click');" class="color-black btn-floating waves-effect  blue darken-4" style="position: absolute; right: -10px; top: -10px;"><i class="material-icons">edit</i></button>
             </div>
             <div class="profile-follow">

@@ -6,7 +6,7 @@ class English extends Methods {
     
     const STRINGS = [
         'acronym' => 'en',
-        'backupLanguage' => '',
+        'backupLanguage' => 'Português',
         'authentication' => [
             'usernameOrEmail' => 'Username or Email',
             'username' => 'Username',
@@ -20,11 +20,13 @@ class English extends Methods {
             'ifYouHaveAnAccount' => 'if you have an account'
         ],
         'interface' => [
+            'appName' => 'photosApp',
             'language' => 'Language',
             'home' => 'Home',
             'profile' => 'Profile',
             'logout' => 'Logout',
             'about' => 'About',
+            'aboutThe' => 'About the',
             'copyLink' => 'copy link',
             'delete' => 'delete',
             'deletePost' => 'delete post',
@@ -84,6 +86,12 @@ class English extends Methods {
             'likes' => 'likes',
             'comment' => 'comment',
             'comments' => 'comments'
+        ],
+        'about' => [
+            'introduction' => '<font class="color-black-bold">PhotosApp</font> is a web application developed with the intention of learning and practicing web programming, with a focus on the MVC model (model-view-controller).',
+            'developer' => 'Application developed entirely by <a href="/MateusHuebra" class="color-black-bold">Mateus Huebra</a>. Find me on <a href="https://www.linkedin.com/in/mateushuebra/" class="color-black-bold">LinkedIn</a>.',
+            'coding' => 'The application was built based on:</br>• PHP (backend)</br>• jQuery (frontend)</br>• MySQL (database)</br>• Materialize (CSS framework)',
+            'github' => 'The source code is available on <a href="https://github.com/MateusHuebra/photosApp" class="color-black-bold">GitHub</a>.'
         ]
     ];
 

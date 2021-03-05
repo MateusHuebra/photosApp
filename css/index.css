@@ -58,6 +58,10 @@ body {
 .color-black {
     color: black;
 }
+.color-black-bold {
+    color: black;
+    font-weight: 500;
+}
 
 .post-text {
     padding-left: 10px;
@@ -170,7 +174,7 @@ body {
 
 .profile-info {
     bottom: 8px;
-    left: 114px;
+    left: 117px;
     position: absolute;
     font-weight: 500;
 }
@@ -213,6 +217,7 @@ body {
     max-width: 25%;*/
     border-radius: 50%;
     max-width: 85px;
+    border: 1px white solid;
 }
 
 .profile-editpicture {
@@ -226,7 +231,7 @@ body {
 }
 
 .profile-username {
-    left: 93px;
+    left: 95px;
     top: 10px;
     position: absolute;
     font-size: 20px;
@@ -287,6 +292,10 @@ body {
     max-height: 250px;
     background-color: white;
     border-top: 1px solid rgb(158, 158, 158);
+}
+
+.outline-white {
+    text-shadow: -1px 0 3px white, 0 1px 3px white, 1px 0 3px white, 0 -1px 3px white;
 }
 
 .fade-in {

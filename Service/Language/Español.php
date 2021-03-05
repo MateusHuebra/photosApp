@@ -21,10 +21,12 @@ class Español extends Methods {
         ],
         'interface' => [
             'language' => 'Idioma',
+            'appName' => 'photosApp',
             'home' => 'Pagina Inicial',
             'profile' => 'Perfil',
             'logout' => 'Salir',
             'about' => 'Acerca',
+            'aboutThe' => 'Acerca el',
             'copyLink' => 'copiar link',
             'delete' => 'borrar',
             'deletePost' => 'borrar publicación',
