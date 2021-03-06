@@ -34,7 +34,7 @@ $(function() {
         commentscounter = $(this).parent().parent().find('.post-comments').find('a');
         likescounter = $(this).parent().parent().find('.post-likescounter')
         postId = $(this).parent().parent().data('postid');
-        $('.likeslist').html(' ');
+        $('.likeslist').html('<div class="preloader-wrapper active" style="left: 43%;top: 70px; position: fixed;"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
         like();
         if(typeof loadRecentComments === 'function') {
             loadRecentComments();
